@@ -1,0 +1,32 @@
+
+
+    font-family: 'Anton', sans-serif;
+
+    font-family: 'Ubuntu', sans-serif;
+
+    font-family: 'Modak', cursive;
+
+    font-family: 'Fascinate Inline', cursive;
+
+    font-family: 'Be Vietnam', sans-serif;
+
+    font-family: 'Baloo Bhai', cursive; // oke
+
+    font-family: 'Righteous', cursive;
+
+    font-family: 'Alfa Slab One', cursive; // oke
+
+    font-family: 'Fredoka One', cursive;
+
+    font-family: 'Russo One', sans-serif; // oke
+
+    font-family: 'Ultra', serif;
+
+    font-family: 'Paytone One', sans-serif;
+
+    font-family: 'Carter One', cursive;
+
+    font-family: 'Black Ops One', cursive;
+
+    font-family: 'Oleo Script', cursive;
+
