@@ -4,16 +4,16 @@
     <title>Inventory EDP | User</title>
     <link rel="shortcut icon" href="<?=base_url('assets/img/rsia_family.jpeg')?>">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?= base_url()?>/assets/fontawesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="<?= base_url()?>/assets/simple-sidebar/css/simple-sidebar.css">
-    <link rel="stylesheet" href="<?= base_url()?>assets/web_admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="<?= base_url()?>/assets/plugins/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="<?= base_url()?>/assets/dist/simple-sidebar/css/simple-sidebar.css">
+    <link rel="stylesheet" href="<?= base_url()?>assets/plugins/datatables.net-bs/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="<?= base_url()?>/assets/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="<?= base_url()?>/assets/simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?= base_url()?>/assets/dist/simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="<?= base_url()?>assets/web_admin/bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="<?= base_url()?>assets/web_admin/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="<?= base_url()?>assets/web_admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="<?= base_url()?>assets/plugins/jquery/jquery.min.js"></script>
+    <script src="<?= base_url()?>assets/plugins/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="<?= base_url()?>assets/plugins/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 
     <style>
       .bg-dark{
