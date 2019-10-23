@@ -48,11 +48,10 @@
               <table id="example1" class="table table-responsive table-bordered table-striped">
                 <thead>
                 <tr>
-									<th>No</th>
-                  <th>Kode Satuan</th>
-                  <th>Nama Satuan</th>
-                  <th>Update</th>
-                  <th>Delete</th>
+									<th width="5%"><center>No</th>
+                  <th width="15%"><center>Kode Satuan</th>
+                  <th width="20%"><center>Nama Satuan</th>
+                  <th width="5%"><center>Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -60,11 +59,14 @@
 									<?php if(is_array($list_data)){ ?>
                   <?php $no = 1;?>
                   <?php foreach($list_data as $dd): ?>
-                    <td><?=$no?></td>
-                    <td><?=$dd->kode_satuan?></td>
-                    <td><?=$dd->nama_satuan?></td>
-										<td width="5%"><center><a type="button" class="btn btn-success"  href="<?=base_url('admin/update_satuan/'.$dd->id_satuan)?>" name="btn_update" style="margin:auto;"><i class="fas fa-edit"  aria-hidden="true"></i></a></td>
-										<td width="5%"><center><a type="button" class="btn btn-danger btn-delete"  href="<?=base_url('admin/delete_satuan/'.$dd->id_satuan)?>" name="btn_delete" style="margin:auto;"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                    <td width="5%"><center><?=$no?></td>
+                    <td width="15%"><center><?=$dd->kode_satuan?></td>
+                    <td width="20%"><?=$dd->nama_satuan?></td>
+										<td width="5%">
+										<center><a type="button" class="btn btn-success"  href="<?=base_url('admin/update_satuan/'.$dd->id_satuan)?>" name="btn_update" style="margin:auto;"><i class="fas fa-edit"  aria-hidden="true"></i></a>
+										<a type="button" class="btn btn-danger btn-delete"  href="<?=base_url('admin/delete_satuan/'.$dd->id_satuan)?>" name="btn_delete" style="margin:auto;"><i class="fa fa-trash" aria-hidden="true"></i></a>
+										</center>
+										</td>
                 </tr>
 									<?php $no++; ?>
 									<?php endforeach;?>

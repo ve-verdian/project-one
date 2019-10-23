@@ -87,7 +87,7 @@
 													<?php if($d->satuan == $s->nama_satuan){?>
 												<option value="<?=$d->satuan?>" selected=""><?=$d->satuan?></option>
 													<?php }else{?>
-												<option value="<?=$s->kode_satuan?>"><?=$s->nama_satuan?></option>
+												<option value="<?=$s->nama_satuan?>"><?=$s->nama_satuan?></option>
 													<?php } ?>
 												<?php } ?>
 											</select>

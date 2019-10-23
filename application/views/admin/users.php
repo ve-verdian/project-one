@@ -48,28 +48,30 @@
 							<table id="example1" class="table table-responsive table-bordered table-striped">
 								<thead>
 									<tr>
-										<th>Username</th>
-										<th>Email</th>
-										<th>Role</th>
-										<th>Last Login</th>
-										<th>Update</th>
-										<th>Delete</th>
+										<th width="15%"><center>Username</th>
+										<th width="15%"><center>Email</th>
+										<th width="10%"><center>Role</th>
+										<th width="12%"><center>Last Login</th>
+										<th width="5%"><center>Aksi</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
 										<?php if(is_array($list_users)){ ?>
 										<?php foreach($list_users as $dd): ?>
-										<td><?=$dd->username?></td>
-										<td><?=$dd->email?></td>
+										<td width="15%"><?=$dd->username?></td>
+										<td width="25%"><?=$dd->email?></td>
 										<?php if($dd->role == 1){ ?>
-										<td>User Admin</td>
+										<td width="10%"><center>User Admin</td>
 										<?php }else{?>
-										<td>User Biasa</td>
+										<td width="10%"><center>User Biasa</td>
 										<?php }?>
-										<td><?=$dd->last_login?></td>
-										<td width="5%"><center><a type="button" class="btn btn-success"  href="<?=base_url('admin/update_user/'.$dd->id)?>" name="btn_update" style="margin:auto;"><i class="fas fa-edit"  aria-hidden="true"></i></a></td>
-										<td width="5%"><center><a type="button" class="btn btn-danger btn-delete"  href="<?=base_url('admin/proses_delete_user/'.$dd->id)?>" name="btn_delete" style="margin:auto;"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+										<td width="12%"><center><?=$dd->last_login?></td>
+										<td width="8%"><center>
+											<a type="button" class="btn btn-success"  href="<?=base_url('admin/update_user/'.$dd->id)?>" name="btn_update" style="margin:auto;"><i class="fas fa-edit"  aria-hidden="true"></i></a>
+											<a type="button" class="btn btn-danger btn-delete"  href="<?=base_url('admin/proses_delete_user/'.$dd->id)?>" name="btn_delete" style="margin:auto;"><i class="fa fa-trash" aria-hidden="true"></i></a>
+										</center>
+										</td>
 									</tr>
 										<?php endforeach;?>
 										<?php }else { ?>

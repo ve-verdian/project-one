@@ -52,20 +52,19 @@
               <?php } ?>
 
 						<a href="<?=base_url('admin/form_barangmasuk')?>" style="margin-bottom:10px;" type="button" class="btn btn-primary" name="tambah_data"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Data Masuk</a>
-              <table id="example1" class="table table-responsive table-bordered table-striped">
+						<!-- <a href="<?=base_url('admin/print')?>" style="margin-bottom:10px;" type="button" class="btn btn-success" name="tambah_data"><i class="fa fa-plus-circle" aria-hidden="true"></i> Export Excel</a> -->
+						  <table id="example1" class="table table-responsive table-bordered table-striped">
                 <thead>
                 <tr>
 									<th width="5%"><center>No</th>
                   <!-- <th width="5%"><center>>ID Transaksi</th> -->
                   <th width="5%"><center>Tanggal</th>
                   <th width="10%"><center>Divisi</th>
-                  <th width="12%"><center>No. Seri / Kode Barang</th>
-                  <th width="15%"><center>Nama Barang</th>
+                  <th width="20%"><center>No. Seri / Kode Barang</th>
+                  <th width="20%"><center>Nama Barang</th>
                   <th width="5%"><center>Satuan</th>
                   <th width="5%"><center>Jumlah</th>
-                  <th width="5%"><center>Update</th>
-                  <th width="5%"><center>Delete</th>
-                  <th width="5%"><center>Keluarkan</th>
+                  <th><center>Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -77,13 +76,16 @@
                     <!-- <td><?=$dd->id_transaksi?></td> -->
                     <td width="5%"><center><?=$dd->tanggal?></td>
                     <td width="10%"><center><?=$dd->divisi?></td>
-                    <td width="12%"><center><?=$dd->kode_barang?></td>
-                    <td width="15%"><?=$dd->nama_barang?></td>
+                    <td width="20%"><center><?=$dd->kode_barang?></td>
+                    <td width="20%"><?=$dd->nama_barang?></td>
                     <td width="5%"><center><?=$dd->satuan?></td>
                     <td width="5%"><center><?=$dd->jumlah?></td>
-										<td width="5%"><center><a type="button" class="btn btn-success"  href="<?=base_url('admin/update_barang/'.$dd->id_transaksi)?>" name="btn_update" style="margin:auto;"><i class="fas fa-edit"  aria-hidden="true"></i></a></td>
-										<td width="5%"><center><a type="button" class="btn btn-danger btn-delete"  href="<?=base_url('admin/delete_barang/'.$dd->id_transaksi)?>" name="btn_delete" style="margin:auto;"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
-										<td width="5%"><center><a type="button" class="btn btn-warning btn-barangkeluar"  href="<?=base_url('admin/barang_keluar/'.$dd->id_transaksi)?>" name="btn_barangkeluar" style="margin:auto;"><i class="fas fa-sign-out-alt"  aria-hidden="true"></i></a></td>
+										<td> 
+											<center><a type="button" class="btn btn-success"  href="<?=base_url('admin/update_barang/'.$dd->id_transaksi)?>" name="btn_update" style="margin:auto;"><i class="fas fa-edit"  aria-hidden="true"></i></a>
+												<a type="button" class="btn btn-danger btn-delete"  href="<?=base_url('admin/delete_barang/'.$dd->id_transaksi)?>" name="btn_delete" style="margin:auto;"><i class="fa fa-trash" aria-hidden="true"></i></a>
+												<a type="button" class="btn btn-warning btn-barangkeluar"  href="<?=base_url('admin/barang_keluar/'.$dd->id_transaksi)?>" name="btn_barangkeluar" style="margin:auto;"><i class="fas fa-sign-out-alt"  aria-hidden="true"></i></a>
+											</center>
+										</td>
                 </tr>
 									<?php $no++; ?>
 									<?php endforeach;?>

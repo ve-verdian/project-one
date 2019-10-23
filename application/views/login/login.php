@@ -29,7 +29,7 @@
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-      <h4 class="login-box-msg" style="font-family: 'Modak', cursive;">Masuk</h4>
+      <h4 class="login-box-msg" font color="#DC143C" style="font-family: 'Modak', cursive;">Masuk</h4>
 
       <form action="<?= base_url('login/proses_login')?>" class="login" method="post">
 			<?php if($this->session->flashdata('msg')){ ?>
