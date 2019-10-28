@@ -624,6 +624,9 @@ class Admin extends CI_Controller{
     }else {
       $this->load->view('admin/divisi/update_divisi');
     }
-  }
+	}
+	 ####################################
+            // END DIVISI
+  ####################################
 }
 ?>

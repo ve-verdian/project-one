@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- <title><?= $title; ?></title> -->
 <?php $this->load->view("admin/_layouts/header.php") ?>
 	<div class="wrapper">
 

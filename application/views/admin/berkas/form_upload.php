@@ -4,6 +4,7 @@
   <title>Inventory EDP | Upload File</title>
 <?php $this->load->view("admin/_layouts/header.php") ?>
 	<div class="wrapper">
+<?php $this->load->view("admin/_layouts/navbar.php") ?>	
 <?php $this->load->view("admin/_layouts/sidebar.php") ?>
 
 <!-- Content Wrapper. Contains page content -->
@@ -38,8 +39,6 @@
 				</div>
 				<!-- /.card-header -->
 
-
-
 				<div class="card-body">
 				<h2>Form Upload File</h2>
 				<p>Gunakan form dibawah ini untuk mengupload file.</p>
@@ -65,6 +64,3 @@
     </section>
     <!-- /.content -->
   </div>
-
-</body>
-</html>

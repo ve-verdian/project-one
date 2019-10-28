@@ -47,6 +47,18 @@
                   <p>Tambah Data Divisi</p>
                 </a>
               </li>
+							<li class="nav-item">
+                <a href="<?= base_url('admin/data_pc')?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Tambah Data PC</p>
+                </a>
+              </li>
+							<li class="nav-item">
+                <a href="<?= base_url('admin/data_printer')?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Tambah Data Printer</p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item has-treeview">
@@ -92,7 +104,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?= base_url('upload/index/berkas') ?>" class="nav-link">
+                <a href="<?= base_url('upload') ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Lampirkan File</p>
                 </a>
