@@ -52,8 +52,9 @@
               <?php } ?>
 
 						<a href="<?=base_url('admin/form_barangmasuk')?>" style="margin-bottom:10px;" type="button" class="btn btn-primary" name="tambah_data"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Data Masuk</a>
-						<!-- <a href="<?=base_url('admin/print')?>" style="margin-bottom:10px;" type="button" class="btn btn-success" name="tambah_data"><i class="fa fa-plus-circle" aria-hidden="true"></i> Export Excel</a> -->
-						  <table id="example1" class="table table-responsive table-bordered table-striped">
+						<a href="#" style="margin-bottom:10px;" type="button" class="btn btn-success" name="export_excel"><i class="fa fa-plus-circle" aria-hidden="true"></i> Export Excel</a>
+						<a href="#" style="margin-bottom:10px;" type="button" class="btn btn-danger" name="cetak_pdf"><i class="fa fa-plus-circle" aria-hidden="true"></i> Cetak Pdf</a>  
+							<table id="example1" class="table table-responsive table-bordered table-striped">
                 <thead>
                 <tr>
 									<th width="5%"><center>No</th>

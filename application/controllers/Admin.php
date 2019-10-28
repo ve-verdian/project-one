@@ -15,7 +15,7 @@ class Admin extends CI_Controller{
       $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user',$this->session->userdata('name'));
       $data['stokBarangMasuk'] = $this->M_admin->sum('tb_barang_masuk','jumlah');
       $data['stokBarangKeluar'] = $this->M_admin->sum('tb_barang_keluar','jumlah');      
-			$data['dataUser'] = $this->M_admin->numrows('user');
+			// $data['dataUser'] = $this->M_admin->numrows('user');
 			$data['dataDivisi'] = $this->M_admin->numrows('tb_divisi');
       $this->load->view('admin/index',$data);
     }else {
@@ -625,8 +625,5 @@ class Admin extends CI_Controller{
       $this->load->view('admin/divisi/update_divisi');
     }
   }
-  ####################################
-            // END DIVISI
-  ####################################
 }
 ?>

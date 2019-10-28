@@ -82,7 +82,22 @@
                 </a>
               </li>
             </ul>
-          </li>
+					</li>
+					<li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-file-upload"></i>
+              <p style="font-family: 'Be Vietnam', sans-serif;">Berkas
+                <i class="fas fa-caret-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?= base_url('upload/index/berkas') ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Lampirkan File</p>
+                </a>
+							</li>
+						</ul>
           <li class="nav-header" style="font-family: 'Fredoka One', cursive;">SETTING</li>
           <li class="nav-item">
             <a href="<?= base_url('admin/profile')?>" class="nav-link">
