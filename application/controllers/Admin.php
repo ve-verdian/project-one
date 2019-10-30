@@ -627,6 +627,189 @@ class Admin extends CI_Controller{
 	}
 	 ####################################
             // END DIVISI
+	####################################
+
+	####################################
+              // PRINTER
   ####################################
+
+  public function data_printer()
+  {
+		$data['title'] = 'Inventory EDP | Tambah Data Printer';
+    $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user',$this->session->userdata('name'));
+    $this->load->view('admin/data_printer/tambah_printer',$data);
+  }
+
+  public function tabel_printer()
+  {
+		$data['title'] = 'Inventory EDP | Data Printer';
+    $data['list_data'] = $this->M_admin->select('tb_printer');
+    $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user',$this->session->userdata('name'));
+    $this->load->view('admin/tabel/tabel_printer',$data);
+  }
+
+  public function update_printer()
+  {
+		$data['title'] = 'Inventory EDP | Update Data Printer';
+    $uri = $this->uri->segment(3);
+    $where = array('id_printer' => $uri);
+    $data['data_printer'] = $this->M_admin->get_data('tb_printer', $where);
+    $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user',$this->session->userdata('name'));
+    $this->load->view('admin/data_printer/update_printer',$data);
+  }
+
+  public function delete_printer()
+  {
+    $uri = $this->uri->segment(3);
+    $where = array('id_printer' => $uri);
+    $this->M_admin->delete('tb_printer',$where);
+    redirect(base_url('admin/tabel_printer'));
+  }
+
+  public function proses_printer_insert()
+  {
+		$this->form_validation->set_rules('tgl_input','Tanggal Input','trim|required');
+    $this->form_validation->set_rules('kategori','Kategori','trim|required');
+		$this->form_validation->set_rules('merk','Merk','trim|required');
+		$this->form_validation->set_rules('type','Type','trim|required');
+		$this->form_validation->set_rules('serial_number','Serial Number','trim');
+		$this->form_validation->set_rules('qty_out','Qty Out','trim|required');
+		$this->form_validation->set_rules('capacity','Capacity','trim');
+		$this->form_validation->set_rules('kondisi','Kondisi','trim|required');
+		$this->form_validation->set_rules('status','Status','trim|required');
+		$this->form_validation->set_rules('keterangan','Keterangan','trim');
+		$this->form_validation->set_rules('warna','Warna','trim|required');
+		$this->form_validation->set_rules('pengguna','Pengguna','trim|required');
+		$this->form_validation->set_rules('lokasi','Lokasi','trim|required');
+		$this->form_validation->set_rules('qty','Qty','trim|required');
+		$this->form_validation->set_rules('backup','Back Up','trim|required');
+		$this->form_validation->set_rules('kepemilikan','Kepemilikan','trim|required');
+		$this->form_validation->set_rules('posisi_skg','Posisi Sekarang','trim');
+		
+    if($this->form_validation->run() ==  TRUE)
+    {
+      $tgl_input = $this->input->post('tgl_input' ,TRUE);
+			$kategori = $this->input->post('kategori' ,TRUE);
+			$merk = $this->input->post('merk' ,TRUE);
+			$type = $this->input->post('type' ,TRUE);
+      $serial_number = $this->input->post('serial_number' ,TRUE);
+			$qty_out = $this->input->post('qty_out' ,TRUE);
+			$capacity = $this->input->post('capacity' ,TRUE);
+			$kondisi = $this->input->post('kondisi' ,TRUE);
+			$status = $this->input->post('status' ,TRUE);
+			$keterangan = $this->input->post('keterangan' ,TRUE);
+			$warna = $this->input->post('warna' ,TRUE);
+			$pengguna = $this->input->post('pengguna' ,TRUE);
+			$lokasi = $this->input->post('lokasi' ,TRUE);
+			$qty = $this->input->post('qty' ,TRUE);
+			$backup = $this->input->post('backup' ,TRUE);
+			$kepemilikan = $this->input->post('kepemilikan' ,TRUE);
+			$posisi_skg = $this->input->post('posisi_skg' ,TRUE);
+
+      $data = array(
+            'tgl_input' => $tgl_input,
+						'kategori' => $kategori,
+						'merk' => $merk,
+						'type' => $type,
+						'serial_number' => $serial_number,
+						'qty_out' => $qty_out,
+						'capacity' => $capacity,
+						'kondisi' => $kondisi,
+						'status' => $status,
+						'keterangan' => $keterangan,
+						'warna' => $warna,
+						'pengguna' => $pengguna,
+						'lokasi' => $lokasi,
+						'qty' => $qty,
+						'backup' => $backup,
+						'kepemilikan' => $kepemilikan,
+            'posisi_skg' => $posisi_skg
+      );
+      $this->M_admin->insert('tb_printer',$data);
+
+      $this->session->set_flashdata('msg_berhasil','Data printer Berhasil Ditambahkan');
+      redirect(base_url('admin/data_printer'));
+    }else {
+      $this->load->view('admin/data_printer/tambah_printer');
+    }
+  }
+
+  public function proses_printer_update()
+  {
+    $this->form_validation->set_rules('tgl_input','Tanggal Input','trim|required');
+    $this->form_validation->set_rules('kategori','Kategori','trim|required');
+		$this->form_validation->set_rules('merk','Merk','trim|required');
+		$this->form_validation->set_rules('type','Type','trim|required');
+		$this->form_validation->set_rules('serial_number','Serial Number','trim');
+		$this->form_validation->set_rules('qty_out','QtyOut','trim|required');
+		$this->form_validation->set_rules('capacity','Capacity','trim');
+		$this->form_validation->set_rules('kondisi','Kondisi','trim|required');
+		$this->form_validation->set_rules('status','Status','trim|required');
+		$this->form_validation->set_rules('keterangan','Keterangan','trim');
+		$this->form_validation->set_rules('warna','Warna','trim|required');
+		$this->form_validation->set_rules('pengguna','Pengguna','trim|required');
+		$this->form_validation->set_rules('lokasi','Lokasi','trim|required');
+		$this->form_validation->set_rules('qty','Qty','trim|required');
+		$this->form_validation->set_rules('backup','Back Up','trim|required');
+		$this->form_validation->set_rules('kepemilikan','Kepemilikan','trim|required');
+		$this->form_validation->set_rules('posisi_skg','Posisi Sekarang','trim');
+
+    if($this->form_validation->run() ==  TRUE)
+    {
+			$id_printer   = $this->input->post('id_printer' ,TRUE);
+      $tgl_input = $this->input->post('tgl_input' ,TRUE);
+			$kategori = $this->input->post('kategori' ,TRUE);
+			$merk = $this->input->post('merk' ,TRUE);
+			$type = $this->input->post('type' ,TRUE);
+      $serial_number = $this->input->post('serial_number' ,TRUE);
+			$qty_out = $this->input->post('qty_out' ,TRUE);
+			$capacity = $this->input->post('capacity' ,TRUE);
+			$kondisi = $this->input->post('kondisi' ,TRUE);
+			$status = $this->input->post('status' ,TRUE);
+			$keterangan = $this->input->post('keterangan' ,TRUE);
+			$warna = $this->input->post('warna' ,TRUE);
+			$pengguna = $this->input->post('pengguna' ,TRUE);
+			$lokasi = $this->input->post('lokasi' ,TRUE);
+			$qty = $this->input->post('qty' ,TRUE);
+			$backup = $this->input->post('backup' ,TRUE);
+			$kepemilikan = $this->input->post('kepemilikan' ,TRUE);
+			$posisi_skg = $this->input->post('posisi_skg' ,TRUE);
+
+
+      $where = array(
+        'id_printer' => $id_printer
+      );
+
+      $data = array(
+				'tgl_input' => $tgl_input,
+				'kategori' => $kategori,
+				'merk' => $merk,
+				'type' => $type,
+				'serial_number' => $serial_number,
+				'qty_out' => $qty_out,
+				'capacity' => $capacity,
+				'kondisi' => $kondisi,
+				'status' => $status,
+				'keterangan' => $keterangan,
+				'warna' => $warna,
+				'pengguna' => $pengguna,
+				'lokasi' => $lokasi,
+				'qty' => $qty,
+				'backup' => $backup,
+				'kepemilikan' => $kepemilikan,
+				'posisi_skg' => $posisi_skg
+      );
+      $this->M_admin->update('tb_printer',$data,$where);
+
+      $this->session->set_flashdata('msg_berhasil','Data Printer Berhasil di Update');
+      redirect(base_url('admin/tabel_printer'));
+    }else {
+      $this->load->view('admin/data_printer/update_printer');
+    }
+	}
+	 ####################################
+            // END PRINTER
+	####################################
+	
 }
 ?>
