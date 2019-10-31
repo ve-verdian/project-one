@@ -50,40 +50,37 @@
                   </div>
                   <?php } ?>
 
-                  <?php if(validation_errors()){ ?>
-                  <div class="alert alert-warning alert-dismissible">
-                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    <strong>Warning!</strong><br> <?= validation_errors(); ?>
-                  </div>
-                  <?php } ?>
-
                   <div class="card-body">
                     <div class="form-row">
                       <div class="form-group col-md-4">
                         <label for="username" style="margin-left:20px">Username</label>
                         <input type="text" name="username" style="margin-left:20px" class="form-control" id="username"
-                          placeholder="Username">
+													placeholder="Username">
+												<?= form_error('username', '<small class="text-danger pl-3">', '</small>') ?>
                       </div>
                     </div>
                     <div class="form-row">
                       <div class="form-group col-md-4">
                         <label for="email" style="margin-left:20px">Email</label>
                         <input type="text" name="email" style="margin-left:20px" class="form-control" id="email"
-                          placeholder="Email">
+													placeholder="Email">
+												<?= form_error('email', '<small class="text-danger pl-3">', '</small>') ?>
                       </div>
                     </div>
                     <div class="form-row">
                       <div class="form-group col-md-4">
                         <label for="password" style="margin-left:20px">Password</label>
                         <input type="password" name="password" style="margin-left:20px" class="form-control"
-                          id="password" placeholder="Password">
+													id="password" placeholder="Password">
+												<?= form_error('password', '<small class="text-danger pl-3">', '</small>') ?>
                       </div>
                     </div>
                     <div class="form-row">
                       <div class="form-group col-md-4">
                         <label for="confirm_password" style="margin-left:20px">Confirm Password</label>
                         <input type="password" name="confirm_password" style="margin-left:20px" class="form-control"
-                          id="confirm_password" placeholder="Confirm Password">
+													id="confirm_password" placeholder="Confirm Password">
+													<?= form_error('confirm_password', '<small class="text-danger pl-3">', '</small>') ?>
                       </div>
                     </div>
                     <div class="form-row">

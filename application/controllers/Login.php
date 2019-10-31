@@ -25,8 +25,8 @@ class Login extends CI_Controller {
 	}
 
 	public function proses_login(){
-		$this->form_validation->set_rules('username','Username','required');
-		$this->form_validation->set_rules('password','Password','required');
+		$this->form_validation->set_rules('username','Username','required|trim');
+		$this->form_validation->set_rules('password','Password','required|trim');
 
 		if($this->form_validation->run() == TRUE){
 			$username = $this->input->post('username',TRUE);

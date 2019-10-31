@@ -50,24 +50,19 @@
                   </div>
                   <?php } ?>
 
-                  <?php if(validation_errors()){ ?>
-                  <div class="alert alert-warning alert-dismissible">
-                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    <strong>Warning!</strong><br> <?= validation_errors(); ?>
-                  </div>
-                  <?php } ?>
-
                   <div class="card-body">
                     <div class="form-row">
                       <div class="form-group col-md-3">
                         <label for="kode_satuan" style="margin-left:5px">Kode Satuan</label>
                         <input type="text" name="kode_satuan" style="margin-left:5px" class="form-control"
-                          id="kode_satuan" placeholder="Kode Satuan">
+													id="kode_satuan" placeholder="Kode Satuan">
+													<?= form_error('kode_satuan', '<small class="text-danger pl-3">', '</small>') ?>
                       </div>
                       <div class="form-group col-md-3">
                         <label for="nama_satuan" style="margin-left:5px">Nama Satuan</label>
                         <input type="text" name="nama_satuan" style="margin-left:5px" class="form-control"
-                          id="nama_satuan" placeholder="Nama Satuan">
+													id="nama_satuan" placeholder="Nama Satuan">
+													<?= form_error('nama_satuan', '<small class="text-danger pl-3">', '</small>') ?>
                       </div>
                     </div>
                     <!-- /.card-body -->

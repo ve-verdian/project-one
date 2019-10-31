@@ -66,7 +66,8 @@
                       <div class="form-group col-md-2">
                         <label for="tanggal_keluar">Tanggal Keluar</label>
                         <input type="text" name="tanggal_keluar" class="form-control form_datetime" id="tanggal_keluar"
-                          required="">
+													required="">
+													<?= form_error('tanggal_keluar', '<small class="text-danger pl-3">', '</small>') ?>
                       </div>
                     </div>
                     <div class="form-group col-md-6">

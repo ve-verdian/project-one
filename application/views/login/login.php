@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Inventory EDP | Sign In</title>
-  <link rel="shortcut icon" href="<?=base_url('assets/#')?>">
+  <link rel="shortcut icon" href="<?=base_url('assets/img/#')?>">
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -43,8 +43,9 @@
           </div>
           <?php } ?>
           <div class="input-group mb-3">
-            <input type="text" class="form-control" style="font-family: 'Be Vietnam', sans-serif;" name="username"
-              placeholder="Username" autofocus required="" />
+            <input type="text" class="form-control" style="font-family: 'Be Vietnam', sans-serif;" name="username" id="username"
+							placeholder="Username" autofocus required="" />
+							<?= form_error('username', '<small class="text-danger pl-3">', '</small>'); ?>
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-user"></span>
@@ -52,8 +53,9 @@
             </div>
           </div>
           <div class="input-group mb-3">
-            <input type="password" class="form-control" style="font-family: 'Be Vietnam', sans-serif;" name="password"
-              placeholder="Password" autofocus required="" />
+            <input type="password" class="form-control" style="font-family: 'Be Vietnam', sans-serif;" name="password" id="password"
+							placeholder="Password" autofocus required="" />
+							<?= form_error('password', '<small class="text-danger pl-3">', '</small>'); ?>
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-lock"></span>

@@ -105,14 +105,16 @@
                         <div class="form-group row">
                           <label for="new_password" class="col-sm-2 col-form-label">New Password</label>
                           <div class="col-sm-10">
-                            <input type="password" class="form-control" id="new_password" placeholder="New Password">
+														<input type="password" class="form-control" id="new_password" placeholder="New Password">
+														<?= form_error('password', '<small class="text-danger pl-3">', '</small>') ?>
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="confrim_new_password" class="col-sm-2 col-form-label">Confirm New Password</label>
                           <div class="col-sm-10">
                             <input type="password" class="form-control" id="confirm_new_password"
-                              placeholder="Confirm New Password">
+															placeholder="Confirm New Password">
+															<?= form_error('confirm_new_password', '<small class="text-danger pl-3">', '</small>') ?>
                           </div>
                         </div>
                         <!-- <?php if(isset($token_generate)){ ?>

@@ -65,7 +65,7 @@
                                             <label for="kategori" class="col-sm-2 col-form-label">Kategori</label>
                                             <div class="col-sm-10">
                                                 <select class="custom-select" name="kategori" id="kategori">
-                                                    <option selected>-</option>
+													<option value="<?=$dp->kategori?>"><?=$dp->kategori?></option>
                                                     <option value="Printer">Printer</option>
                                                     <option value="Scan">Scan</option>
                                                     <option value="Calc">Calc</option>
@@ -106,18 +106,19 @@
                                         <div class="form-group row">
                                             <label for="capacity" class="col-sm-2 col-form-label">Capacity (VA)</label>
                                             <div class="col-sm-10">
-                                                <input type="text" name="capacity" class="form-control" id="capacity"
-                                                    placeholder="Capacity" value="<?=$dp->capcity?>">
+                                                <input type="number" name="capacity" class="form-control" id="capacity"
+                                                    placeholder="Capacity" value="<?=$dp->capacity?>">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="kondisi" class="col-sm-2 col-form-label">Kondisi</label>
                                             <div class="col-sm-10">
                                                 <select class="custom-select" name="kondisi" id="kondisi">
-                                                    <option selected>-</option>
-                                                    <option value="Baik">Baik</option>
+													<option value="<?=$dp->kondisi?>"><?=$dp->kondisi?></option>
+													<option value="Baru">Baru</option>
+													<option value="Baik">Baik</option>
                                                     <option value="Rusak">Rusak</option>
-                                                    <option value="Kurang">Kurang</option>
+													<option value="Kurang">Kurang</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -125,7 +126,7 @@
                                             <label for="status" class="col-sm-2 col-form-label">Status</label>
                                             <div class="col-sm-10">
                                                 <select class="custom-select" name="status" id="status">
-                                                    <option selected>-</option>
+													<option value="<?=$dp->status?>"><?=$dp->status?></option>
                                                     <option value="Aktif">Aktif</option>
                                                     <option value="Tidak">Tidak</option>
                                                 </select>
@@ -143,7 +144,7 @@
                                             <label for="warna" class="col-sm-2 col-form-label">Warna</label>
                                             <div class="col-sm-10">
                                                 <select class="custom-select" name="warna" id="warna">
-                                                    <option selected>-</option>
+													<option value="<?=$dp->warna?>"><?=$dp->warna?></option>
                                                     <option value="Hitam">Hitam</option>
                                                     <option value="Putih">Putih</option>
                                                     <option value="Krem">Krem</option>
@@ -162,7 +163,7 @@
                                             <label for="lokasi" class="col-sm-2 col-form-label">Lokasi</label>
                                             <div class="col-sm-10">
                                                 <select class="custom-select" name="lokasi" id="lokasi">
-                                                    <option selected>-</option>
+													<option value="<?=$dp->lokasi?>"><?=$dp->lokasi?></option>
                                                     <option value="Lobby">Lobby</option>
                                                     <option value="Lantai 1">Lantai 1</option>
                                                     <option value="Lantai 2">Lantai 2</option>
@@ -182,9 +183,8 @@
                                         <div class="form-group row">
                                             <label for="backup" class="col-sm-2 col-form-label">Back Up</label>
                                             <div class="col-sm-10">
-                                                <select class="custom-select" name="backup" id="backup"
-                                                    value="<?=$dp->backup?>">
-                                                    <option selected>-</option>
+                                                <select class="custom-select" name="backup" id="backup">
+													<option value="<?=$dp->backup?>"><?=$dp->backup?></option>
                                                     <option value="Ya">Ya</option>
                                                     <option value="Tidak">Tidak</option>
                                                 </select>
@@ -194,7 +194,7 @@
                                             <label for="kepemilikan" class="col-sm-2 col-form-label">Kepemilikan</label>
                                             <div class="col-sm-10">
                                                 <select class="custom-select" name="kepemilikan" id="kepemilikan">
-                                                    <option selected>-</option>
+													<option value="<?=$dp->kepemilikan?>"><?=$dp->kepemilikan?></option>
                                                     <option value="RSIA Family">RSIA Family</option>
                                                     <option value="Vendor">Vendor</option>
                                                 </select>

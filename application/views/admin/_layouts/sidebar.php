@@ -50,7 +50,7 @@
             <li class="nav-item">
               <a href="<?= base_url('admin/data_pc')?>" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Tambah Data PC</p>
+                <p>Tambah Data Komputer</p>
               </a>
             </li>
             <li class="nav-item">
@@ -96,7 +96,7 @@
             <li class="nav-item">
               <a href="<?= base_url('admin/tabel_pc')?>" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Data PC</p>
+                <p>Data Komputer</p>
               </a>
             </li>
             <li class="nav-item">

@@ -3,7 +3,7 @@
 
 <head>
   <title>Inventory EDP | User</title>
-  <link rel="shortcut icon" href="<?=base_url('assets/#')?>">
+  <link rel="shortcut icon" href="<?=base_url('assets/img/rsia_family.jpeg')?>">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="<?= base_url()?>/assets/plugins/fontawesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="<?= base_url()?>/assets/dist/simple-sidebar/css/simple-sidebar.css">

@@ -53,9 +53,10 @@ class Admin extends CI_Controller{
 
   public function proses_new_password()
   {
-    $this->form_validation->set_rules('email','Email','required');
-    $this->form_validation->set_rules('new_password','New Password','required');
-    $this->form_validation->set_rules('confirm_new_password','Confirm New Password','required|matches[new_password]');
+    $this->form_validation->set_rules('email','Email','required|trim');
+    $this->form_validation->set_rules('new_password','New Password','required|trim');
+		$this->form_validation->set_rules('confirm_new_password','Confirm New Password','required|trim|matches[new_password]');
+		$this->form_validation->set_message('required', '{field} wajib diisi');
 
     if($this->form_validation->run() == TRUE)
     {
@@ -76,7 +77,7 @@ class Admin extends CI_Controller{
 
         $this->M_admin->update_password('user',$where,$data);
 
-        $this->session->set_flashdata('msg_berhasil','Password Telah Diganti');
+        $this->session->set_flashdata('msg_berhasil','Password Telah di Ganti');
         redirect(base_url('admin/profile'));
       }
     }else {
@@ -141,8 +142,6 @@ class Admin extends CI_Controller{
            // End Profile
   ####################################
 
-
-
   ####################################
               // Users
   ####################################
@@ -192,7 +191,8 @@ class Admin extends CI_Controller{
     $this->form_validation->set_rules('username','Username','trim|required');
     $this->form_validation->set_rules('email','Email','trim|required|valid_email');
     $this->form_validation->set_rules('password','Password','trim|required');
-    $this->form_validation->set_rules('confirm_password','Confirm password','trim|required|matches[password]');
+		$this->form_validation->set_rules('confirm_password','Confirm password','trim|required|matches[password]');
+		$this->form_validation->set_message('required', '{field} wajib diisi');
 
     if($this->form_validation->run() == TRUE)
     {
@@ -212,7 +212,7 @@ class Admin extends CI_Controller{
         );
         $this->M_admin->insert('user',$data);
 
-        $this->session->set_flashdata('msg_berhasil','User Berhasil Ditambahkan');
+        $this->session->set_flashdata('msg_berhasil','User Berhasil di Tambahkan');
         redirect(base_url('admin/users'));
         }
       }else {
@@ -243,7 +243,7 @@ class Admin extends CI_Controller{
               'role'         => $role,
         );
         $this->M_admin->update('user',$data,$where);
-        $this->session->set_flashdata('msg_berhasil','Data User Berhasil Diupdate');
+        $this->session->set_flashdata('msg_berhasil','Data User Berhasil di Update');
         redirect(base_url('admin/users'));
        }
     }else{
@@ -255,8 +255,6 @@ class Admin extends CI_Controller{
   ####################################
            // End Users
   ####################################
-
-
 
   ####################################
         // DATA BARANG MASUK
@@ -300,14 +298,13 @@ class Admin extends CI_Controller{
     redirect(base_url('admin/tabel_barangmasuk'));
   }
 
-
-
   public function proses_databarang_masuk_insert()
   {
     $this->form_validation->set_rules('divisi','Divisi','trim|required');
     $this->form_validation->set_rules('kode_barang','Kode Barang','trim|required');
     $this->form_validation->set_rules('nama_barang','Nama Barang','trim|required');
-    $this->form_validation->set_rules('jumlah','Jumlah','trim|required');
+		$this->form_validation->set_rules('jumlah','Jumlah','trim|required');
+		$this->form_validation->set_message('required', '{field} wajib diisi');
 
     if($this->form_validation->run() == TRUE)
     {
@@ -330,7 +327,7 @@ class Admin extends CI_Controller{
       );
       $this->M_admin->insert('tb_barang_masuk',$data);
 
-      $this->session->set_flashdata('msg_berhasil','Data Barang Berhasil Ditambahkan');
+      $this->session->set_flashdata('msg_berhasil','Data Barang Berhasil di Tambahkan');
       redirect(base_url('admin/form_barangmasuk'));
     }else {
       $data['list_satuan'] = $this->M_admin->select('tb_satuan');
@@ -366,7 +363,7 @@ class Admin extends CI_Controller{
             'jumlah'       => $jumlah
       );
       $this->M_admin->update('tb_barang_masuk',$data,$where);
-      $this->session->set_flashdata('msg_berhasil','Data Barang Berhasil Diupdate');
+      $this->session->set_flashdata('msg_berhasil','Data Barang Berhasil di Update');
       redirect(base_url('admin/tabel_barangmasuk'));
     }else{
       $this->load->view('admin/form_barangmasuk/form_update');
@@ -374,9 +371,8 @@ class Admin extends CI_Controller{
   }
   ####################################
       // END DATA BARANG MASUK
-  ####################################
-
-
+	####################################
+	
   ####################################
               // SATUAN
   ####################################
@@ -418,6 +414,7 @@ class Admin extends CI_Controller{
   {
     $this->form_validation->set_rules('kode_satuan','Kode Satuan','trim|required|max_length[100]');
     $this->form_validation->set_rules('nama_satuan','Nama Satuan','trim|required|max_length[100]');
+		$this->form_validation->set_message('required', '{field} wajib diisi');
 
     if($this->form_validation->run() ==  TRUE)
     {
@@ -430,7 +427,7 @@ class Admin extends CI_Controller{
       );
       $this->M_admin->insert('tb_satuan',$data);
 
-      $this->session->set_flashdata('msg_berhasil','Data satuan Berhasil Ditambahkan');
+      $this->session->set_flashdata('msg_berhasil','Data Satuan Berhasil di Tambahkan');
       redirect(base_url('admin/form_satuan'));
     }else {
       $this->load->view('admin/form_satuan/form_insert');
@@ -458,7 +455,7 @@ class Admin extends CI_Controller{
       );
       $this->M_admin->update('tb_satuan',$data,$where);
 
-      $this->session->set_flashdata('msg_berhasil','Data satuan Berhasil Di Update');
+      $this->session->set_flashdata('msg_berhasil','Data Satuan Berhasil di Update');
       redirect(base_url('admin/tabel_satuan'));
     }else {
       $this->load->view('admin/form_satuan/form_update');
@@ -467,9 +464,8 @@ class Admin extends CI_Controller{
 
   ####################################
             // END SATUAN
-  ####################################
-
-
+	####################################
+	
   ####################################
      // DATA MASUK KE DATA KELUAR
   ####################################
@@ -525,7 +521,6 @@ class Admin extends CI_Controller{
     // END DATA MASUK KE DATA KELUAR
   ####################################
 
-
   ####################################
         // DATA BARANG KELUAR
   ####################################
@@ -578,7 +573,8 @@ class Admin extends CI_Controller{
   public function proses_divisi_insert()
   {
     $this->form_validation->set_rules('kode_divisi','Kode Divisi','trim|required|max_length[150]');
-    $this->form_validation->set_rules('nama_divisi','Nama Divisi','trim|required|max_length[150]');
+		$this->form_validation->set_rules('nama_divisi','Nama Divisi','trim|required|max_length[150]');
+		$this->form_validation->set_message('required', '{field} wajib diisi');
 
     if($this->form_validation->run() ==  TRUE)
     {
@@ -591,7 +587,7 @@ class Admin extends CI_Controller{
       );
       $this->M_admin->insert('tb_divisi',$data);
 
-      $this->session->set_flashdata('msg_berhasil','Data Divisi Berhasil Ditambahkan');
+      $this->session->set_flashdata('msg_berhasil','Data Divisi Berhasil di Tambahkan');
       redirect(base_url('admin/divisi'));
     }else {
       $this->load->view('admin/divisi/tambah_divisi');
@@ -627,6 +623,180 @@ class Admin extends CI_Controller{
 	}
 	 ####################################
             // END DIVISI
+	####################################
+
+	####################################
+              // KOMPUTER
+  ####################################
+
+  public function data_pc()
+  {
+		$data['title'] = 'Inventory EDP | Tambah Data Komputer';
+		$data['list_divisi'] = $this->M_admin->select('tb_divisi');
+    $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user',$this->session->userdata('name'));
+    $this->load->view('admin/data_pc/tambah_pc',$data);
+  }
+
+  public function tabel_pc()
+  {
+		$data['title'] = 'Inventory EDP | Data Komputer';
+		$data['list_data'] = $this->M_admin->select('tb_pc');
+		$data['list_divisi'] = $this->M_admin->select('tb_divisi');
+    $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user',$this->session->userdata('name'));
+    $this->load->view('admin/tabel/tabel_pc',$data);
+  }
+
+  public function update_pc()
+  {
+		$data['title'] = 'Inventory EDP | Update Data Komputer';
+    $uri = $this->uri->segment(3);
+    $where = array('id_pc' => $uri);
+		$data['data_pc'] = $this->M_admin->get_data('tb_pc', $where);
+		$data['list_divisi'] = $this->M_admin->select('tb_divisi');
+    $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user',$this->session->userdata('name'));
+    $this->load->view('admin/data_pc/update_pc',$data);
+  }
+
+  public function delete_pc()
+  {
+    $uri = $this->uri->segment(3);
+    $where = array('id_pc' => $uri);
+    $this->M_admin->delete('tb_pc',$where);
+    redirect(base_url('admin/tabel_pc'));
+  }
+
+  public function proses_pc_insert()
+  {
+		$this->form_validation->set_rules('tgl_input','Tanggal Input','trim|required');
+    $this->form_validation->set_rules('divisi','Divisi','trim|required');
+		$this->form_validation->set_rules('hostname','Hostname','trim|required');
+		$this->form_validation->set_rules('user','User','trim|required');
+		$this->form_validation->set_rules('jenis','Jenis','trim|required');
+		$this->form_validation->set_rules('hard_disk','Harddisk','trim');
+		$this->form_validation->set_rules('ram','RAM','trim');
+		$this->form_validation->set_rules('processor','Processor','trim');
+		$this->form_validation->set_rules('os','Operating System','trim|required');
+		$this->form_validation->set_rules('ip_address','IP Address','trim');
+		$this->form_validation->set_rules('lokasi','Lokasi','trim|required');
+		$this->form_validation->set_rules('internet','Internet','trim|required');
+		$this->form_validation->set_rules('lokal','Lokal','trim|required');
+		$this->form_validation->set_rules('simrs','SIM-RS','trim|required');
+		$this->form_validation->set_rules('status','Status','trim|required');
+		$this->form_validation->set_message('required', '{field} wajib diisi');
+		
+    if($this->form_validation->run() ==  TRUE)
+    {
+      $tgl_input = $this->input->post('tgl_input' ,TRUE);
+			$divisi = $this->input->post('divisi' ,TRUE);
+			$hostname = $this->input->post('hostname' ,TRUE);
+			$user = $this->input->post('user' ,TRUE);
+      $jenis = $this->input->post('jenis' ,TRUE);
+			$hard_disk = $this->input->post('hard_disk' ,TRUE);
+			$ram = $this->input->post('ram' ,TRUE);
+			$processor = $this->input->post('processor' ,TRUE);
+			$os = $this->input->post('os' ,TRUE);
+			$ip_address = $this->input->post('ip_address' ,TRUE);
+			$lokasi = $this->input->post('lokasi' ,TRUE);
+			$internet = $this->input->post('internet' ,TRUE);
+			$lokal = $this->input->post('lokal' ,TRUE);
+			$simrs = $this->input->post('simrs' ,TRUE);
+			$status = $this->input->post('status' ,TRUE);
+
+      $data = array(
+            'tgl_input' => $tgl_input,
+						'divisi' => $divisi,
+						'hostname' => $hostname,
+						'user' => $user,
+						'jenis' => $jenis,
+						'hard_disk' => $hard_disk,
+						'ram' => $ram,
+						'processor' => $processor,
+						'os' => $os,
+						'ip_address' => $ip_address,
+						'lokasi' => $lokasi,
+						'internet' => $internet,
+						'lokal' => $lokal,
+						'simrs' => $simrs,
+            'status' => $status
+      );
+      $this->M_admin->insert('tb_pc',$data);
+ 
+      $this->session->set_flashdata('msg_berhasil','Data pc Berhasil di Tambahkan');
+      redirect(base_url('admin/data_pc'));
+    }else {
+      $this->load->view('admin/data_pc/tambah_pc');
+    }
+  }
+
+  public function proses_pc_update()
+  {
+    $this->form_validation->set_rules('tgl_input','Tanggal Input','trim|required');
+    $this->form_validation->set_rules('divisi','Divisi','trim|required');
+		$this->form_validation->set_rules('hostname','Hostname','trim|required');
+		$this->form_validation->set_rules('user','User','trim|required');
+		$this->form_validation->set_rules('jenis','Jenis','trim|required');
+		$this->form_validation->set_rules('hard_disk','Harddisk','trim');
+		$this->form_validation->set_rules('ram','RAM','trim');
+		$this->form_validation->set_rules('processor','Processor','trim');
+		$this->form_validation->set_rules('os','Operating System','trim|required');
+		$this->form_validation->set_rules('ip_address','IP Address','trim');
+		$this->form_validation->set_rules('lokasi','Lokasi','trim|required');
+		$this->form_validation->set_rules('internet','Internet','trim|required');
+		$this->form_validation->set_rules('lokal','Lokal','trim|required');
+		$this->form_validation->set_rules('simrs','SIM-RS','trim|required');
+		$this->form_validation->set_rules('status','Status','trim|required');
+
+    if($this->form_validation->run() ==  TRUE)
+    {
+			$id_pc   = $this->input->post('id_pc' ,TRUE);
+      $tgl_input = $this->input->post('tgl_input' ,TRUE);
+			$divisi = $this->input->post('divisi' ,TRUE);
+			$hostname = $this->input->post('hostname' ,TRUE);
+			$user = $this->input->post('user' ,TRUE);
+      $jenis = $this->input->post('jenis' ,TRUE);
+			$hard_disk = $this->input->post('hard_disk' ,TRUE);
+			$ram = $this->input->post('ram' ,TRUE);
+			$processor = $this->input->post('processor' ,TRUE);
+			$os = $this->input->post('os' ,TRUE);
+			$ip_address = $this->input->post('ip_address' ,TRUE);
+			$lokasi = $this->input->post('lokasi' ,TRUE);
+			$internet = $this->input->post('internet' ,TRUE);
+			$lokal = $this->input->post('lokal' ,TRUE);
+			$simrs = $this->input->post('simrs' ,TRUE);
+			$status = $this->input->post('status' ,TRUE);
+
+
+      $where = array(
+        'id_pc' => $id_pc
+      );
+
+      $data = array(
+				'tgl_input' => $tgl_input,
+				'divisi' => $divisi,
+				'hostname' => $hostname,
+				'user' => $user,
+				'jenis' => $jenis,
+				'hard_disk' => $hard_disk,
+				'ram' => $ram,
+				'processor' => $processor,
+				'os' => $os,
+				'ip_address' => $ip_address,
+				'lokasi' => $lokasi,
+				'internet' => $internet,
+				'lokal' => $lokal,
+				'simrs' => $simrs,
+				'status' => $status
+      );
+      $this->M_admin->update('tb_pc',$data,$where);
+
+      $this->session->set_flashdata('msg_berhasil','Data Komputer Berhasil di Update');
+      redirect(base_url('admin/tabel_pc'));
+    }else {
+      $this->load->view('admin/data_pc/update_pc');
+    }
+	}
+	 ####################################
+            // END KOMPUTER
 	####################################
 
 	####################################
@@ -672,7 +842,7 @@ class Admin extends CI_Controller{
     $this->form_validation->set_rules('kategori','Kategori','trim|required');
 		$this->form_validation->set_rules('merk','Merk','trim|required');
 		$this->form_validation->set_rules('type','Type','trim|required');
-		$this->form_validation->set_rules('serial_number','Serial Number','trim');
+		$this->form_validation->set_rules('serial_number','Serial Number','trim|required');
 		$this->form_validation->set_rules('qty_out','Qty Out','trim|required');
 		$this->form_validation->set_rules('capacity','Capacity','trim');
 		$this->form_validation->set_rules('kondisi','Kondisi','trim|required');
@@ -684,7 +854,8 @@ class Admin extends CI_Controller{
 		$this->form_validation->set_rules('qty','Qty','trim|required');
 		$this->form_validation->set_rules('backup','Back Up','trim|required');
 		$this->form_validation->set_rules('kepemilikan','Kepemilikan','trim|required');
-		$this->form_validation->set_rules('posisi_skg','Posisi Sekarang','trim');
+		$this->form_validation->set_rules('posisi_skg','Terakhir di Simpan','trim');
+		$this->form_validation->set_message('required', '{field} wajib diisi');
 		
     if($this->form_validation->run() ==  TRUE)
     {
@@ -726,8 +897,8 @@ class Admin extends CI_Controller{
             'posisi_skg' => $posisi_skg
       );
       $this->M_admin->insert('tb_printer',$data);
-
-      $this->session->set_flashdata('msg_berhasil','Data printer Berhasil Ditambahkan');
+ 
+      $this->session->set_flashdata('msg_berhasil','Data printer Berhasil di Tambahkan');
       redirect(base_url('admin/data_printer'));
     }else {
       $this->load->view('admin/data_printer/tambah_printer');
@@ -752,7 +923,7 @@ class Admin extends CI_Controller{
 		$this->form_validation->set_rules('qty','Qty','trim|required');
 		$this->form_validation->set_rules('backup','Back Up','trim|required');
 		$this->form_validation->set_rules('kepemilikan','Kepemilikan','trim|required');
-		$this->form_validation->set_rules('posisi_skg','Posisi Sekarang','trim');
+		$this->form_validation->set_rules('posisi_skg','Terakhir di Simpan','trim');
 
     if($this->form_validation->run() ==  TRUE)
     {

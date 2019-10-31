@@ -44,16 +44,9 @@
                   method="post">
 
                   <?php if($this->session->flashdata('msg_berhasil')){ ?>
-                  <div class="alert alert-success alert-dismissible" style="width:91%">
+                  <div class="alert alert-success alert-dismissible" style="width:90%">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                     <strong>Success!</strong><br> <?= $this->session->flashdata('msg_berhasil');?>
-                  </div>
-                  <?php } ?>
-
-                  <?php if(validation_errors()){ ?>
-                  <div class="alert alert-warning alert-dismissible">
-                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    <strong>Warning!</strong><br> <?= validation_errors(); ?>
                   </div>
                   <?php } ?>
 
@@ -62,7 +55,8 @@
                       <label for="tgl_input" class="col-sm-2 col-form-label">Tanggal Input</label>
                       <div class="col-sm-10">
                         <input type="text" name="tgl_input" class="form-control form_datetime" id="tgl_input"
-                          placeholder="Tanggal Input">
+													placeholder="Tanggal Input">
+													<?= form_error('tgl_input', '<small class="text-danger pl-3">', '</small>') ?>
                       </div>
                     </div>
                     <div class="form-group row">
@@ -80,20 +74,23 @@
                     <div class="form-group row">
                       <label for="merk" class="col-sm-2 col-form-label">Merk</label>
                       <div class="col-sm-10">
-                        <input merk="text" name="merk" class="form-control" id="merk" placeholder="Merk">
+												<input merk="text" name="merk" class="form-control" id="merk" placeholder="Merk">
+												<?= form_error('merk', '<small class="text-danger pl-3">', '</small>') ?>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="type" class="col-sm-2 col-form-label">Type</label>
                       <div class="col-sm-10">
-                        <input type="text" name="type" class="form-control" id="type" placeholder="Type">
+												<input type="text" name="type" class="form-control" id="type" placeholder="Type">
+												<?= form_error('type', '<small class="text-danger pl-3">', '</small>') ?>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="serial_number" class="col-sm-2 col-form-label">Serial Number</label>
                       <div class="col-sm-10">
                         <input type="text" name="serial_number" class="form-control" id="serial_number"
-                          placeholder="Serial Number">
+													placeholder="Serial Number">
+													<?= form_error('serial_number', '<small class="text-danger pl-3">', '</small>') ?>
                       </div>
                     </div>
                     <div class="form-group row">
@@ -105,14 +102,15 @@
                     <div class="form-group row">
                       <label for="capacity" class="col-sm-2 col-form-label">Capacity (VA)</label>
                       <div class="col-sm-10">
-                        <input type="text" name="capacity" class="form-control" id="capacity" placeholder="Capacity">
+                        <input type="number" name="capacity" class="form-control" id="capacity" placeholder="Capacity">
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="kondisi" class="col-sm-2 col-form-label">Kondisi</label>
                       <div class="col-sm-10">
                         <select class="custom-select" name="kondisi" id="kondisi">
-                          <option selected>-</option>
+													<option selected>-</option>
+													<option value="Baru">Baru</option>
                           <option value="Baik">Baik</option>
                           <option value="Rusak">Rusak</option>
                           <option value="Kurang">Kurang</option>
@@ -151,7 +149,8 @@
                     <div class="form-group row">
                       <label for="pengguna" class="col-sm-2 col-form-label">Pengguna</label>
                       <div class="col-sm-10">
-                        <input type="text" name="pengguna" class="form-control" id="pengguna" placeholder="Pengguna">
+												<input type="text" name="pengguna" class="form-control" id="pengguna" placeholder="Pengguna">
+												<?= form_error('pengguna', '<small class="text-danger pl-3">', '</small>') ?>
                       </div>
                     </div>
                     <div class="form-group row">

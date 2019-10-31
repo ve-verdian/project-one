@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Inventory EDP | Sign Up</title>
-  <link rel="shortcut icon" href="<?=base_url('assets/#')?>">
+  <link rel="shortcut icon" href="<?=base_url('assets/img/#')?>">
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -56,8 +56,9 @@
 
         <form action="<?= base_url('register/proses_register')?>" class="login" method="post">
           <div class="input-group mb-3">
-            <input type="text" name="username" class="form-control" style="font-family: 'Be Vietnam', sans-serif;"
+            <input type="text" name="username" id="username" class="form-control" style="font-family: 'Be Vietnam', sans-serif;"
               placeholder="Username" autofocus required="">
+              <?= form_error('username', '<small class="text-danger pl-3">', '</small>'); ?>
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-user"></span>
@@ -65,8 +66,9 @@
             </div>
           </div>
           <div class="input-group mb-3">
-            <input type="email" name="email" class="form-control" style="font-family: 'Be Vietnam', sans-serif;"
+            <input type="email" name="email" id="email" class="form-control" style="font-family: 'Be Vietnam', sans-serif;"
               placeholder="Email" autofocus required="">
+              <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-envelope"></span>
@@ -74,8 +76,9 @@
             </div>
           </div>
           <div class="input-group mb-3">
-            <input type="password" name="password" class="form-control" style="font-family: 'Be Vietnam', sans-serif;"
+            <input type="password" name="password" id="password" class="form-control" style="font-family: 'Be Vietnam', sans-serif;"
               placeholder="Password" autofocus required="">
+              <?= form_error('password', '<small class="text-danger pl-3">', '</small>'); ?>
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-lock"></span>
@@ -83,8 +86,9 @@
             </div>
           </div>
           <div class="input-group mb-3">
-            <input type="password" name="confirm_password" class="form-control"
+            <input type="password" name="confirm_password" id="confirm_password" class="form-control"
               style="font-family: 'Be Vietnam', sans-serif;" placeholder="Confirm password" autofocus required="">
+              <?= form_error('confirm_password', '<small class="text-danger pl-3">', '</small>'); ?>
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-lock"></span>

@@ -50,24 +50,19 @@
                   </div>
                   <?php } ?>
 
-                  <?php if(validation_errors()){ ?>
-                  <div class="alert alert-warning alert-dismissible">
-                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    <strong>Warning!</strong><br> <?= validation_errors(); ?>
-                  </div>
-                  <?php } ?>
-
                   <div class="card-body">
                     <div class="form-row">
                       <div class="form-group col-md-3">
                         <label for="kode_divisi" style="margin-left:5px">Kode Divisi</label>
                         <input type="text" name="kode_divisi" style="margin-left:5px" class="form-control"
-                          id="kode_divisi" placeholder="Kode Divisi">
+													id="kode_divisi" placeholder="Kode Divisi">
+													<?= form_error('kode_divisi', '<small class="text-danger pl-3">', '</small>') ?>
                       </div>
                       <div class="form-group col-md-3">
                         <label for="nama_divisi" style="margin-left:5px">Nama Divisi</label>
                         <input type="text" name="nama_divisi" style="margin-left:5px" class="form-control"
-                          id="nama_divisi" placeholder="Nama Divisi">
+													id="nama_divisi" placeholder="Nama Divisi">
+													<?= form_error('nama_divisi', '<small class="text-danger pl-3">', '</small>') ?>
                       </div>
                     </div>
                     <!-- /.card-body -->

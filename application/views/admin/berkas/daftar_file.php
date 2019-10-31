@@ -72,24 +72,24 @@
                         <th width="12%">
                           <center>Ukuran File
                         </th>
-                        <th width="15%">
+                        <th width="12%">
                           <center>Tanggal Upload
                         </th>
-                        <th width="8%">
+                        <th width="10%">
                           <center>Aksi
                         </th>
                       </tr>
                     </thead>
                     <tbody>
-                      <?php
-								$no=null;
-								$dir = "uploaded_file/";
+                    <?php
+											$no=null;
+											$dir = "uploaded_file/";
 
-								if(isset($daftar_file)){
-									for($a=0;$a<count($daftar_file);$a++) { 
-										if($daftar_file[$a]!='.' && $daftar_file[$a]!='..'){
-										$no++;
-										$file=$daftar_file[$a];
+											if(isset($daftar_file)){
+												for($a=0;$a<count($daftar_file);$a++) { 
+													if($daftar_file[$a]!='.' && $daftar_file[$a]!='..'){
+													$no++;
+													$file=$daftar_file[$a];
 										?>
                       <tr>
                         <td align="center"><?= $no;?></td>
