@@ -3,11 +3,11 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class M_barmas extends CI_Model
+class M_pc extends CI_Model
 {
 
-    public $table = 'tb_barang_masuk';
-    public $id = 'id_transaksi';
+    public $table = 'tb_pc';
+    public $id = 'id_pc';
     public $order = 'DESC';
 
     function __construct()
@@ -31,13 +31,22 @@ class M_barmas extends CI_Model
     
     // get total rows
     function total_rows($q = NULL) {
-		$this->db->like('id_transaksi', $q);
-		$this->db->or_like('tanggal', $q);
+		$this->db->like('id_pc', $q);
+		$this->db->or_like('tgl_input', $q);
 		$this->db->or_like('divisi', $q);
-		$this->db->or_like('kode_barang', $q);
-		$this->db->or_like('nama_barang', $q);
-		$this->db->or_like('jumlah', $q);
-		$this->db->or_like('satuan', $q);
+		$this->db->or_like('hostname', $q);
+		$this->db->or_like('user', $q);
+		$this->db->or_like('jenis', $q);
+		$this->db->or_like('hard_disk', $q);
+		$this->db->or_like('ram', $q);
+		$this->db->or_like('processor', $q);
+		$this->db->or_like('os', $q);
+		$this->db->or_like('ip_address', $q);
+		$this->db->or_like('lokasi', $q);
+		$this->db->or_like('internet', $q);
+		$this->db->or_like('lokal', $q);
+		$this->db->or_like('simrs', $q);
+		$this->db->or_like('status', $q);
 		$this->db->from($this->table);
         return $this->db->count_all_results();
     }
@@ -45,13 +54,22 @@ class M_barmas extends CI_Model
     // get data with limit and search
     function get_limit_data($limit, $start = 0, $q = NULL) {
 		$this->db->order_by($this->id, $this->order);
-		$this->db->like('id_transaksi', $q);
-		$this->db->or_like('tanggal', $q);
+		$this->db->like('id_pc', $q);
+		$this->db->or_like('tgl_input', $q);
 		$this->db->or_like('divisi', $q);
-		$this->db->or_like('kode_barang', $q);
-		$this->db->or_like('nama_barang', $q);
-		$this->db->or_like('jumlah', $q);
-		$this->db->or_like('satuan', $q);
+		$this->db->or_like('hostname', $q);
+		$this->db->or_like('user', $q);
+		$this->db->or_like('jenis', $q);
+		$this->db->or_like('hard_disk', $q);
+		$this->db->or_like('ram', $q);
+		$this->db->or_like('processor', $q);
+		$this->db->or_like('os', $q);
+		$this->db->or_like('ip_address', $q);
+		$this->db->or_like('lokasi', $q);
+		$this->db->or_like('internet', $q);
+		$this->db->or_like('lokal', $q);
+		$this->db->or_like('simrs', $q);
+		$this->db->or_like('status', $q);
 		$this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }

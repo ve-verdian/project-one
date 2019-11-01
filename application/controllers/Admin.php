@@ -5,7 +5,9 @@ class Admin extends CI_Controller{
 
   public function __construct(){
 		parent::__construct();
-    $this->load->model('M_admin');
+		$this->load->model('M_admin');
+		$this->load->model('M_printer');
+		$this->load->model('M_barmas');
     $this->load->library('upload');
 	}
 
@@ -16,7 +18,9 @@ class Admin extends CI_Controller{
       $data['stokBarangMasuk'] = $this->M_admin->sum('tb_barang_masuk','jumlah');
       $data['stokBarangKeluar'] = $this->M_admin->sum('tb_barang_keluar','jumlah');      
 			// $data['dataUser'] = $this->M_admin->numrows('user');
-			$data['dataDivisi'] = $this->M_admin->numrows('tb_divisi');
+			// $data['dataDivisi'] = $this->M_admin->numrows('tb_divisi');
+			$data['dataPC'] = $this->M_admin->numrows('tb_pc');
+			$data['dataPrinter'] = $this->M_admin->numrows('tb_printer');
       $this->load->view('admin/index',$data);
     }else {
       $this->load->view('login/login');
@@ -182,7 +186,7 @@ class Admin extends CI_Controller{
     $id = $this->uri->segment(3);
     $where = array('id' => $id);
     $this->M_admin->delete('user',$where);
-    $this->session->set_flashdata('msg_berhasil','User Behasil di Hapus');
+    $this->session->set_flashdata('msg_berhasil','User Berhasil di Hapus');
     redirect(base_url('admin/users'));
   }
 
@@ -367,8 +371,80 @@ class Admin extends CI_Controller{
       redirect(base_url('admin/tabel_barangmasuk'));
     }else{
       $this->load->view('admin/form_barangmasuk/form_update');
-    }
-  }
+		}
+	}
+	
+	public function cetak_barmas(){
+
+		$id_transaksi = substr($this->uri->uri_string(3), 27);
+		 
+		$sql_data_barmas = "SELECT * FROM tb_barang_masuk";
+
+		$sql_barmas    = "SELECT * id_transaksi 
+												FROM tb_barang_masuk
+												WHERE id_transaksi='$id_transaksi'";
+
+				$this->load->library('pdf');
+				$pdf = new FPDF('l', 'mm', array(410,380));
+				// membuat halaman baru
+				$pdf->AddPage();
+				// setting jenis font yang akan digunakan
+				$pdf->SetFont('Arial', 'B', 16);
+
+				$pdf->Image('http://localhost/project-one/assets/img/rsia_family.jpeg', 75, 5, 30);
+				// $pdf->Image('', )
+				// mencetak string 
+				$pdf->Cell(65, 7, '', 0, 0, 'C');
+				$pdf->Cell(260, 7, 'RSIA Family', 0, 1, 'C');
+				$pdf->SetFont('Arial', '', 12);
+				$pdf->Cell(45, 7, '', 0, 0, 'C');
+				$pdf->Cell(300, 7, 'Jl. Pluit Mas Raya 1 Blok A No.2A-5A, RT.1/RW.18, Pejagalan, Kec. Penjaringan,', 0, 1, 'C');
+				$pdf->Cell(43, 7, '', 0, 0, 'C');
+				$pdf->Cell(300, 7, 'Kota Jakarta Utara, Daerah Khusus Ibukota Jakarta 14450', 0, 1, 'C');
+				$pdf->Cell(83, 7, '', 0, 0, 'C');
+				$pdf->Cell(220, 7, 'Telepon : (021) 669 5066. E-mail: info@rsiafamily.com ', 0, 1, 'C');
+				$pdf->Line(10,40, 430-30, 40);
+				$pdf->Line(10,40.8, 430-30, 40.8);
+				
+				$pdf->Cell(30, 7, '', 0, 1);
+
+				$pdf->Cell(70, 7, '', 0, 0, 'C');
+				$pdf->Cell(250, 7, 'Laporan Data Barang Masuk', 0, 1, 'C');
+
+				//tabel hasil input barang masuk
+				$pdf->Cell(100,7, '',0,0,'C');
+				$pdf->Cell(40, 7, '  ID Transaksi  ', 1, 0, 'C');
+				$pdf->Cell(25, 7, ' Tanggal  ', 1, 0, 'C');
+				$pdf->Cell(20, 7, '  Divisi  ', 1, 0, 'C');
+				$pdf->Cell(28, 7, '  Kode Barang  ', 1, 0, 'C');
+				$pdf->Cell(45, 7, ' Nama Barang  ', 1, 0, 'C');
+				$pdf->Cell(18, 7, ' Jumlah  ', 1, 0, 'C');
+				$pdf->Cell(25, 7, ' Satuan  ', 1, 1, 'C');
+
+
+				$tampil = $this->db->query($sql_data_barmas)->result();
+				foreach ($tampil as $t) {
+				$pdf->Cell(100,7, '',0,0,'C');
+				$pdf->Cell(40, 7, $t->id_transaksi, 1, 0, 'C');
+				$pdf->Cell(25, 7, $t->tanggal, 1, 0, 'C');
+				$pdf->Cell(20, 7, $t->divisi, 1, 0, 'C');
+				$pdf->Cell(28, 7, $t->kode_barang, 1, 0, 'C');
+				$pdf->Cell(45, 7, $t->nama_barang, 1, 0, 'C');
+				$pdf->Cell(18, 7, $t->jumlah, 1, 0, 'C');
+				$pdf->Cell(25, 7, $t->satuan, 1, 1, 'C');
+
+				}
+
+				$pdf->Cell(130, 10, '', 0, 1);
+				$pdf->Cell(130, 10, '', 0, 1);
+				$pdf->Cell(110, 10, '', 0, 0);
+				$pdf->Cell(200, 10, 'Tanggal Cetak', 0, 0, 'R');
+				$pdf->Cell(50, 10, ': '.date('d-m-Y '), 0, 0, 'R');
+
+
+				$pdf->Output();
+		}
+		
   ####################################
       // END DATA BARANG MASUK
 	####################################
@@ -516,7 +592,82 @@ class Admin extends CI_Controller{
       $this->load->view('perpindahan_barang/form_update/'.$id_transaksi);
     }
 
-  }
+	}
+	
+	public function cetak_barkel(){
+
+		$id_transaksi = substr($this->uri->uri_string(3), 27);
+		 
+		$sql_data_barkel = "SELECT * FROM tb_barang_keluar";
+
+		$sql_barkel    = "SELECT * id_transaksi 
+												FROM tb_barang_keluar
+												WHERE id_transaksi='$id_transaksi'";
+
+				$this->load->library('pdf');
+				$pdf = new FPDF('l', 'mm', array(410,380));
+				// membuat halaman baru
+				$pdf->AddPage();
+				// setting jenis font yang akan digunakan
+				$pdf->SetFont('Arial', 'B', 16);
+
+				$pdf->Image('http://localhost/project-one/assets/img/rsia_family.jpeg', 75, 5, 30);
+				// $pdf->Image('', )
+				// mencetak string 
+				$pdf->Cell(65, 7, '', 0, 0, 'C');
+				$pdf->Cell(260, 7, 'RSIA Family', 0, 1, 'C');
+				$pdf->SetFont('Arial', '', 12);
+				$pdf->Cell(45, 7, '', 0, 0, 'C');
+				$pdf->Cell(300, 7, 'Jl. Pluit Mas Raya 1 Blok A No.2A-5A, RT.1/RW.18, Pejagalan, Kec. Penjaringan,', 0, 1, 'C');
+				$pdf->Cell(43, 7, '', 0, 0, 'C');
+				$pdf->Cell(300, 7, 'Kota Jakarta Utara, Daerah Khusus Ibukota Jakarta 14450', 0, 1, 'C');
+				$pdf->Cell(83, 7, '', 0, 0, 'C');
+				$pdf->Cell(220, 7, 'Telepon : (021) 669 5066. E-mail: info@rsiafamily.com ', 0, 1, 'C');
+				$pdf->Line(10,40, 430-30, 40);
+				$pdf->Line(10,40.8, 430-30, 40.8);
+				
+				$pdf->Cell(30, 7, '', 0, 1);
+
+				$pdf->Cell(70, 7, '', 0, 0, 'C');
+				$pdf->Cell(250, 7, 'Laporan Data Barang Keluar', 0, 1, 'C');
+
+				//tabel hasil input barang keluar
+				$pdf->Cell(60,7, '',0,0,'C');
+				$pdf->Cell(40, 7, '  ID Transaki  ', 1, 0, 'C');
+				$pdf->Cell(25, 7, ' Tgl Masuk ', 1, 0, 'C');
+				$pdf->Cell(25, 7, ' Tgl Keluar ', 1, 0, 'C');
+				$pdf->Cell(20, 7, '  Divisi  ', 1, 0, 'C');
+				$pdf->Cell(38, 7, ' Kode Barang  ', 1, 0, 'C');
+				$pdf->Cell(45, 7, ' Nama Barang  ', 1, 0, 'C');
+				$pdf->Cell(25, 7, ' Jumlah  ', 1, 0, 'C');
+				$pdf->Cell(23, 7, ' Satuan  ', 1, 0, 'C');
+				$pdf->Cell(30, 7, ' Unit Order  ', 1, 1, 'C');
+
+
+				$tampil = $this->db->query($sql_data_barkel)->result();
+				foreach ($tampil as $t) {
+				$pdf->Cell(60,7, '',0,0,'C');
+				$pdf->Cell(40, 7, $t->id_transaksi, 1, 0, 'C');
+				$pdf->Cell(25, 7, $t->tanggal_masuk, 1, 0, 'C');
+				$pdf->Cell(25, 7, $t->tanggal_keluar, 1, 0, 'C');
+				$pdf->Cell(20, 7, $t->divisi, 1, 0, 'C');
+				$pdf->Cell(38, 7, $t->kode_barang, 1, 0, 'C');
+				$pdf->Cell(45, 7, $t->nama_barang, 1, 0, 'C');
+				$pdf->Cell(25, 7, $t->jumlah, 1, 0, 'C');
+				$pdf->Cell(23, 7, $t->satuan, 1, 0, 'C');
+				$pdf->Cell(30, 7, $t->unit_order, 1, 1, 'C');
+
+				}
+
+				$pdf->Cell(130, 10, '', 0, 1);
+				$pdf->Cell(130, 10, '', 0, 1);
+				$pdf->Cell(110, 10, '', 0, 0);
+				$pdf->Cell(200, 10, 'Tanggal Cetak', 0, 0, 'R');
+				$pdf->Cell(50, 10, ': '.date('d-m-Y '), 0, 0, 'R');
+
+
+				$pdf->Output();
+		}
   ####################################
     // END DATA MASUK KE DATA KELUAR
   ####################################
@@ -795,6 +946,93 @@ class Admin extends CI_Controller{
       $this->load->view('admin/data_pc/update_pc');
     }
 	}
+
+	public function cetak_pc(){
+
+    $id_pc = substr($this->uri->uri_string(3), 27);
+     
+    $sql_data_pc = "SELECT * FROM tb_pc";
+
+    $sql_pc    = "SELECT * id_pc 
+                        FROM tb_pc
+                        WHERE id_pc='$id_pc'";
+
+        $this->load->library('pdf');
+        $pdf = new FPDF('l', 'mm', array(410,380));
+        // membuat halaman baru
+        $pdf->AddPage();
+        // setting jenis font yang akan digunakan
+        $pdf->SetFont('Arial', 'B', 16);
+
+        $pdf->Image('http://localhost/project-one/assets/img/rsia_family.jpeg', 75, 5, 30);
+        // $pdf->Image('', )
+        // mencetak string 
+        $pdf->Cell(65, 7, '', 0, 0, 'C');
+        $pdf->Cell(260, 7, 'RSIA Family', 0, 1, 'C');
+        $pdf->SetFont('Arial', '', 12);
+        $pdf->Cell(45, 7, '', 0, 0, 'C');
+        $pdf->Cell(300, 7, 'Jl. Pluit Mas Raya 1 Blok A No.2A-5A, RT.1/RW.18, Pejagalan, Kec. Penjaringan,', 0, 1, 'C');
+				$pdf->Cell(43, 7, '', 0, 0, 'C');
+        $pdf->Cell(300, 7, 'Kota Jakarta Utara, Daerah Khusus Ibukota Jakarta 14450', 0, 1, 'C');
+				$pdf->Cell(83, 7, '', 0, 0, 'C');
+        $pdf->Cell(220, 7, 'Telepon : (021) 669 5066. E-mail: info@rsiafamily.com ', 0, 1, 'C');
+        $pdf->Line(10,40, 430-30, 40);
+        $pdf->Line(10,40.8, 430-30, 40.8);
+        
+        $pdf->Cell(30, 7, '', 0, 1);
+
+        $pdf->Cell(70, 7, '', 0, 0, 'C');
+        $pdf->Cell(250, 7, 'Laporan Data Komputer', 0, 1, 'C');
+
+        //tabel hasil input data komputer
+        $pdf->Cell(15,7, '',0,0,'C');
+        $pdf->Cell(10, 7, '  No  ', 1, 0, 'C');
+        $pdf->Cell(25, 7, ' Tanggal  ', 1, 0, 'C');
+        $pdf->Cell(30, 7, '  Dept / Divisi  ', 1, 0, 'C');
+        $pdf->Cell(30, 7, ' Hostname  ', 1, 0, 'C');
+        $pdf->Cell(25, 7, ' User  ', 1, 0, 'C');
+				$pdf->Cell(15, 7, '   Jenis  ', 1, 0, 'C');
+				$pdf->Cell(25, 7, '  Harddisk  ', 1, 0, 'C');
+        $pdf->Cell(20, 7, '  RAM  ', 1, 0, 'C');
+				$pdf->Cell(35, 7, '  OS  ', 1, 0, 'C');
+				$pdf->Cell(35, 7, '  IP Address  ', 1, 0, 'C');
+				$pdf->Cell(23, 7, ' Lokasi  ', 1, 0, 'C');
+				$pdf->Cell(20, 7, '  Internet  ', 1, 0, 'C');
+				$pdf->Cell(20, 7, '  Lokal  ', 1, 0, 'C');
+				$pdf->Cell(20, 7, '  SIM-RS  ', 1, 0, 'C');
+				$pdf->Cell(20, 7, ' Status  ', 1, 1, 'C');
+
+
+        $tampil = $this->db->query($sql_data_pc)->result();
+        foreach ($tampil as $t) {
+        $pdf->Cell(15,7, '',0,0,'C');
+        $pdf->Cell(10, 7, $t->id_pc, 1, 0, 'C');
+        $pdf->Cell(25, 7, $t->tgl_input, 1, 0, 'C');
+        $pdf->Cell(30, 7, $t->divisi, 1, 0, 'C');
+        $pdf->Cell(30, 7, $t->hostname, 1, 0, 'C');
+        $pdf->Cell(25, 7, $t->user, 1, 0, 'C');
+				$pdf->Cell(15, 7, $t->jenis, 1, 0, 'C');
+				$pdf->Cell(25, 7, $t->hard_disk, 1, 0, 'C');
+        $pdf->Cell(20, 7, $t->ram, 1, 0, 'C');
+				$pdf->Cell(35, 7, $t->os, 1, 0, 'C');
+				$pdf->Cell(35, 7, $t->ip_address, 1, 0, 'C');
+				$pdf->Cell(23, 7, $t->lokasi, 1, 0, 'C');
+				$pdf->Cell(20, 7, $t->internet, 1, 0, 'C');
+				$pdf->Cell(20, 7, $t->lokal, 1, 0, 'C');
+				$pdf->Cell(20, 7, $t->simrs, 1, 0, 'C');
+				$pdf->Cell(20, 7, $t->status, 1, 1, 'C');
+
+        }
+
+        $pdf->Cell(130, 10, '', 0, 1);
+        $pdf->Cell(130, 10, '', 0, 1);
+        $pdf->Cell(110, 10, '', 0, 0);
+        $pdf->Cell(200, 10, 'Tanggal Cetak', 0, 0, 'R');
+        $pdf->Cell(50, 10, ': '.date('d-m-Y '), 0, 0, 'R');
+
+
+        $pdf->Output();
+    }
 	 ####################################
             // END KOMPUTER
 	####################################
@@ -978,6 +1216,89 @@ class Admin extends CI_Controller{
       $this->load->view('admin/data_printer/update_printer');
     }
 	}
+
+	public function cetak_printer(){
+
+    $id_printer = substr($this->uri->uri_string(3), 27);
+     
+    $sql_data_printer = "SELECT * FROM tb_printer";
+
+    $sql_printer    = "SELECT * id_printer 
+                        FROM tb_printer
+                        WHERE id_printer='$id_printer'";
+
+        $this->load->library('pdf');
+        $pdf = new FPDF('l', 'mm', array(410,380));
+        // membuat halaman baru
+        $pdf->AddPage();
+        // setting jenis font yang akan digunakan
+        $pdf->SetFont('Arial', 'B', 16);
+
+        $pdf->Image('http://localhost/project-one/assets/img/rsia_family.jpeg', 75, 5, 30);
+        // $pdf->Image('', )
+        // mencetak string 
+        $pdf->Cell(65, 7, '', 0, 0, 'C');
+        $pdf->Cell(260, 7, 'RSIA Family', 0, 1, 'C');
+        $pdf->SetFont('Arial', '', 12);
+        $pdf->Cell(45, 7, '', 0, 0, 'C');
+        $pdf->Cell(300, 7, 'Jl. Pluit Mas Raya 1 Blok A No.2A-5A, RT.1/RW.18, Pejagalan, Kec. Penjaringan,', 0, 1, 'C');
+				$pdf->Cell(43, 7, '', 0, 0, 'C');
+        $pdf->Cell(300, 7, 'Kota Jakarta Utara, Daerah Khusus Ibukota Jakarta 14450', 0, 1, 'C');
+				$pdf->Cell(83, 7, '', 0, 0, 'C');
+        $pdf->Cell(220, 7, 'Telepon : (021) 669 5066. E-mail: info@rsiafamily.com ', 0, 1, 'C');
+        $pdf->Line(10,40, 430-30, 40);
+        $pdf->Line(10,40.8, 430-30, 40.8);
+        
+        $pdf->Cell(30, 7, '', 0, 1);
+
+        $pdf->Cell(70, 7, '', 0, 0, 'C');
+        $pdf->Cell(250, 7, 'Laporan Data Printer', 0, 1, 'C');
+
+        //tabel hasil input printer
+        $pdf->Cell(25,7, '',0,0,'C');
+        $pdf->Cell(10, 7, '  No  ', 1, 0, 'C');
+        $pdf->Cell(25, 7, ' Tanggal  ', 1, 0, 'C');
+        $pdf->Cell(20, 7, '  Kategori  ', 1, 0, 'C');
+        $pdf->Cell(45, 7, ' Merk  ', 1, 0, 'C');
+        $pdf->Cell(42, 7, ' Type  ', 1, 0, 'C');
+				$pdf->Cell(35, 7, '   Serial Number  ', 1, 0, 'C');
+				$pdf->Cell(25, 7, '  Warna  ', 1, 0, 'C');
+        $pdf->Cell(20, 7, '  Qty Out  ', 1, 0, 'C');
+        $pdf->Cell(23, 7, ' Kondisi  ', 1, 0, 'C');
+				$pdf->Cell(23, 7, '  Pengguna  ', 1, 0, 'C');
+				$pdf->Cell(23, 7, ' Lokasi  ', 1, 0, 'C');
+				$pdf->Cell(27, 7, '  Kepemilikan  ', 1, 0, 'C');
+				$pdf->Cell(23, 7, ' Status  ', 1, 1, 'C');
+
+
+        $tampil = $this->db->query($sql_data_printer)->result();
+        foreach ($tampil as $t) {
+        $pdf->Cell(25,7, '',0,0,'C');
+        $pdf->Cell(10, 7, $t->id_printer, 1, 0, 'C');
+        $pdf->Cell(25, 7, $t->tgl_input, 1, 0, 'C');
+        $pdf->Cell(20, 7, $t->kategori, 1, 0, 'C');
+        $pdf->Cell(45, 7, $t->merk, 1, 0, 'C');
+        $pdf->Cell(42, 7, $t->type, 1, 0, 'C');
+				$pdf->Cell(35, 7, $t->serial_number, 1, 0, 'C');
+				$pdf->Cell(25, 7, $t->warna, 1, 0, 'C');
+        $pdf->Cell(20, 7, $t->qty_out, 1, 0, 'C');
+				$pdf->Cell(23, 7, $t->kondisi, 1, 0, 'C');
+				$pdf->Cell(23, 7, $t->pengguna, 1, 0, 'C');
+				$pdf->Cell(23, 7, $t->lokasi, 1, 0, 'C');
+				$pdf->Cell(27, 7, $t->kepemilikan, 1, 0, 'C');
+				$pdf->Cell(23, 7, $t->status, 1, 1, 'C');
+
+        }
+
+        $pdf->Cell(130, 10, '', 0, 1);
+        $pdf->Cell(130, 10, '', 0, 1);
+        $pdf->Cell(110, 10, '', 0, 0);
+        $pdf->Cell(200, 10, 'Tanggal Cetak', 0, 0, 'R');
+        $pdf->Cell(50, 10, ': '.date('d-m-Y '), 0, 0, 'R');
+
+
+        $pdf->Output();
+    }
 	 ####################################
             // END PRINTER
 	####################################

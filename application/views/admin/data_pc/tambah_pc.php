@@ -195,7 +195,7 @@
                       Simpan</button>
                     <a type="submit" class="btn btn-primary center-block"
                       href="<?=base_url('admin/tabel_pc')?>" name="btn_listpc"><i class="fa fa-table"
-                        aria-hidden="true"></i> List Data PC</a>
+                        aria-hidden="true"></i> List Data Komputer</a>
                   </div>
               </div>
               <!-- /.card-footer -->

@@ -46,7 +46,7 @@
 
 						<a href="<?=base_url('admin/data_printer')?>" style="margin-bottom:10px;" type="button" class="btn btn-primary" name="tambah_data"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Data Printer</a>
             <a href="#" style="margin-bottom:10px;" type="button" class="btn btn-success" name="export_excel"><i class="fa fa-plus-circle" aria-hidden="true"></i> Export Excel</a>
-						<a href="#" style="margin-bottom:10px;" type="button" class="btn btn-danger" name="cetak_pdf"><i class="fa fa-plus-circle" aria-hidden="true"></i> Cetak Pdf</a>    
+						<a href="<?=base_url('admin/cetak_printer')?>" style="margin-bottom:10px;" type="button" class="btn btn-danger" name="cetak_pdf"><i class="fa fa-plus-circle" aria-hidden="true"></i> Cetak Pdf</a>    
 							<table id="example1" class="table table-responsive table-bordered table-striped">
                 <thead>
                 <tr>

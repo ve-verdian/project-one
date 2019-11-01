@@ -57,7 +57,7 @@
                   Data Masuk</a>
                 <a href="#" style="margin-bottom:10px;" type="button" class="btn btn-success" name="export_excel"><i
                     class="fa fa-plus-circle" aria-hidden="true"></i> Export Excel</a>
-                <a href="#" style="margin-bottom:10px;" type="button" class="btn btn-danger" name="cetak_pdf"><i
+                <a href="<?=base_url('admin/cetak_barmas')?>" style="margin-bottom:10px;" type="button" class="btn btn-danger" name="cetak_pdf"><i
                     class="fa fa-plus-circle" aria-hidden="true"></i> Cetak Pdf</a>
                 <table id="example1" class="table table-responsive table-bordered table-striped">
                   <thead>
@@ -85,7 +85,13 @@
                         <center>Jumlah
                       </th>
                       <th>
-                        <center>Aksi
+                        <center>Update
+											</th>
+											<th>
+                        <center>Hapus
+											</th>
+											<th>
+                        <center>Keluar
                       </th>
                     </tr>
                   </thead>
@@ -117,11 +123,15 @@
                       <td>
                         <center><a type="button" class="btn btn-success"
                             href="<?=base_url('admin/update_barang/'.$dd->id_transaksi)?>" name="btn_update"
-                            style="margin:auto;"><i class="fas fa-edit" aria-hidden="true"></i></a>
-                          <a type="button" class="btn btn-danger btn-delete"
+														style="margin:auto;"><i class="fas fa-edit" aria-hidden="true"></i></a>
+											</td>			
+                      <td>
+												<center><a type="button" class="btn btn-danger btn-delete"
                             href="<?=base_url('admin/delete_barang/'.$dd->id_transaksi)?>" name="btn_delete"
                             style="margin:auto;"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                          <a type="button" class="btn btn-warning btn-barangkeluar"
+											</td>
+											<td>		
+												<center><a type="button" class="btn btn-warning btn-barangkeluar"
                             href="<?=base_url('admin/barang_keluar/'.$dd->id_transaksi)?>" name="btn_barangkeluar"
                             style="margin:auto;"><i class="fas fa-sign-out-alt" aria-hidden="true"></i></a>
                         </center>

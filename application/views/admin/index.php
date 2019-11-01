@@ -79,33 +79,34 @@
               <!-- small box -->
               <div class="small-box bg-warning">
                 <div class="inner">
-                  <?php if(!empty($dataDivisi)){ ?>
-                  <h3><?=$dataDivisi?></h3>
+                  <?php if(!empty($dataPC)){ ?>
+                  <h3><?=$dataPC?></h3>
                   <?php } ?>
-                  <p>Data Divisi</p>
+                  <p>Data Komputer</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-person-add"></i>
                 </div>
-                <a href="<?= base_url('admin/tabel_divisi')?>" class="small-box-footer">More info <i
+                <a href="<?= base_url('admin/tabel_pc')?>" class="small-box-footer">More info <i
                     class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
-            <!-- <div class="col-lg-3 col-6"> -->
+            <div class="col-lg-3 col-6">
             <!-- small box -->
-            <!-- <div class="small-box bg-danger">
+            <div class="small-box bg-danger">
               <div class="inner">
-                <h3>65</h3>
-
-                <p>Unique Visitors</p>
+								<?php if(!empty($dataPrinter)){ ?>
+                <h3><?=$dataPrinter?></h3>
+                <?php } ?>
+                <p>Data Printer</p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="<?= base_url('admin/tabel_printer')?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
-          </div> -->
+          </div>
             <!-- ./col -->
           </div><!-- /.container-fluid -->
       </section>

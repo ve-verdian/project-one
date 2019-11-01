@@ -1,12 +1,8 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-require_once dirname(__FILE__) . '/tcpdf/tcpdf.php';
-class Pdf extends TCPDF
-{
-    function __construct()
-    {
-        parent::__construct();
+<?php
+class pdf {
+ 
+    function __construct() {
+        include_once APPPATH . '/third_party/fpdf/fpdf.php';
     }
 }
-
-/* End of file Pdf.php */
-/* Location: ./application/libraries/Pdf.php */
+?>

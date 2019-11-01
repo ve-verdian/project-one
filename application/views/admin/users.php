@@ -64,7 +64,10 @@
                         <center>Last Login
                       </th>
                       <th width="5%">
-                        <center>Aksi
+                        <center>Update
+											</th>
+											<th width="5%">
+                        <center>Hapus
                       </th>
                     </tr>
                   </thead>
@@ -90,10 +93,11 @@
                         <center>
                           <a type="button" class="btn btn-success" href="<?=base_url('admin/update_user/'.$dd->id)?>"
                             name="btn_update" style="margin:auto;"><i class="fas fa-edit" aria-hidden="true"></i></a>
-                          <a type="button" class="btn btn-danger btn-delete"
+											</td>
+											<td>		
+												<center><a type="button" class="btn btn-danger btn-delete"
                             href="<?=base_url('admin/proses_delete_user/'.$dd->id)?>" name="btn_delete"
                             style="margin:auto;"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                        </center>
                       </td>
                     </tr>
                     <?php endforeach;?>

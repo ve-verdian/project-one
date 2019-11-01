@@ -57,7 +57,7 @@
                   Data Keluar</a>
                 <a href="#" style="margin-bottom:10px;" type="button" class="btn btn-success" name="export_excel"><i
                     class="fa fa-plus-circle" aria-hidden="true"></i> Export Excel</a>
-                <a href="#" style="margin-bottom:10px;" type="button" class="btn btn-danger" name="cetak_pdf"><i
+                <a href="<?=base_url('admin/cetak_barkel')?>" style="margin-bottom:10px;" type="button" class="btn btn-danger" name="cetak_pdf"><i
                     class="fa fa-plus-circle" aria-hidden="true"></i> Cetak Pdf</a>
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
