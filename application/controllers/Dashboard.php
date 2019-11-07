@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Dashboard extends CI_Controller {
   public function index()
  {
-  $this->load->view('admin/data_pc/tambah_pc');
+  $this->load->view('ppi_2');
  }
 }
 ?>

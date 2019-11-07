@@ -45,7 +45,7 @@
               <?php } ?>
 
 						<a href="<?=base_url('admin/data_pc')?>" style="margin-bottom:10px;" type="button" class="btn btn-primary" name="tambah_data"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Data Komputer</a>
-            <a href="#" style="margin-bottom:10px;" type="button" class="btn btn-success" name="export_excel"><i class="fa fa-plus-circle" aria-hidden="true"></i> Export Excel</a>
+            <a href="<?=base_url('excel/export_pc')?>" style="margin-bottom:10px;" type="button" class="btn btn-success" name="export_excel"><i class="fa fa-plus-circle" aria-hidden="true"></i> Export Excel</a>
 						<a href="<?=base_url('admin/cetak_pc')?>" style="margin-bottom:10px;" type="button" class="btn btn-danger" name="cetak_pdf"><i class="fa fa-plus-circle" aria-hidden="true"></i> Cetak Pdf</a>    
 							<table id="example1" class="table table-responsive table-bordered table-striped">
                 <thead>
@@ -76,7 +76,7 @@
                   <?php $no = 1;?>
                   <?php foreach($list_data as $dd): ?>
                     <td width="5%"><center><?=$no?></td>
-                    <td width="15%"><center><?=$dd->tgl_input?></td>
+                    <td width="15%"><center><?=date('d-m-Y', strtotime($dd->tgl_input))?></td>
                     <td width="15%"><?=$dd->divisi?></td>
 										<td width="15%"><?=$dd->hostname?></td>
                     <td width="15%"><?=$dd->user?></td>

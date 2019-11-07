@@ -1,12 +1,21 @@
 <?php
-    $pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
-    $pdf->SetTitle('Contoh');
-    $pdf->SetTopMargin(20);
-    $pdf->setFooterMargin(20);
-    $pdf->SetAutoPageBreak(true);
-    $pdf->SetAuthor('Author');
-    $pdf->SetDisplayMode('real', 'default');
-    $pdf->AddPage();
-    $pdf->Write(5, 'Contoh Laporan PDF dengan CodeIgniter + tcpdf');
-    $pdf->Output('contoh1.pdf', 'I');
-?>
+defined('BASEPATH') OR exit('No direct script access allowed');
+?><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Show Grid</title>
+</head>
+<body>
+
+<div id="container">
+    <h1>Welcome to CodeIgniter! Show me the grid!</h1>
+
+    <div id="body">
+        <?php $phpgrid->display(); ?>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -59,13 +59,13 @@
                           id="id_transaksi" readonly="readonly" value="<?=$d->id_transaksi?>">
                       </div>
                       <div class="form-group col-md-2">
-                        <label for="tanggal" style="margin-left:2px">Tanggal Masuk</label>
-                        <input type="text" name="tanggal" style="margin-left:2px" class="form-control" id="tanggal"
-                          readonly="readonly" value="<?=$d->tanggal?>">
+                        <label for="tanggal_masuk" style="margin-left:2px">Tanggal Masuk</label>
+                        <input type="date" name="tanggal_masuk" style="margin-left:2px" class="form-control" id="tanggal_masuk"
+                          readonly="readonly" value="<?=$d->tanggal_masuk?>">
                       </div>
                       <div class="form-group col-md-2">
                         <label for="tanggal_keluar">Tanggal Keluar</label>
-                        <input type="text" name="tanggal_keluar" class="form-control form_datetime" id="tanggal_keluar"
+                        <input type="date" name="tanggal_keluar" class="form-control" id="tanggal_keluar"
 													required="">
 													<?= form_error('tanggal_keluar', '<small class="text-danger pl-3">', '</small>') ?>
                       </div>

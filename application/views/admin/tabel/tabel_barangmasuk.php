@@ -55,7 +55,7 @@
                 <a href="<?=base_url('admin/form_barangmasuk')?>" style="margin-bottom:10px;" type="button"
                   class="btn btn-primary" name="tambah_data"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah
                   Data Masuk</a>
-                <a href="#" style="margin-bottom:10px;" type="button" class="btn btn-success" name="export_excel"><i
+                <a href="<?=base_url('excel/export_barmas')?>" style="margin-bottom:10px;" type="button" class="btn btn-success" name="export_excel"><i
                     class="fa fa-plus-circle" aria-hidden="true"></i> Export Excel</a>
                 <a href="<?=base_url('admin/cetak_barmas')?>" style="margin-bottom:10px;" type="button" class="btn btn-danger" name="cetak_pdf"><i
                     class="fa fa-plus-circle" aria-hidden="true"></i> Cetak Pdf</a>
@@ -79,10 +79,10 @@
                         <center>Nama Barang
                       </th>
                       <th width="5%">
-                        <center>Satuan
+                        <center>Jumlah
                       </th>
                       <th width="5%">
-                        <center>Jumlah
+                        <center>Satuan
                       </th>
                       <th>
                         <center>Update
@@ -105,7 +105,7 @@
                       </td>
                       <!-- <td><?=$dd->id_transaksi?></td> -->
                       <td width="5%">
-                        <center><?=$dd->tanggal?>
+                        <center><?=date('d-m-Y', strtotime($dd->tanggal))?>
                       </td>
                       <td width="10%">
                         <center><?=$dd->divisi?>
@@ -115,10 +115,10 @@
                       </td>
                       <td width="20%"><?=$dd->nama_barang?></td>
                       <td width="5%">
-                        <center><?=$dd->satuan?>
+                        <center><?=$dd->jumlah?>
                       </td>
                       <td width="5%">
-                        <center><?=$dd->jumlah?>
+                        <center><?=$dd->satuan?>
                       </td>
                       <td>
                         <center><a type="button" class="btn btn-success"

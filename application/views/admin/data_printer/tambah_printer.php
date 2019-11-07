@@ -54,7 +54,7 @@
                     <div class="form-group row">
                       <label for="tgl_input" class="col-sm-2 col-form-label">Tanggal Input</label>
                       <div class="col-sm-10">
-                        <input type="text" name="tgl_input" class="form-control form_datetime" id="tgl_input"
+                        <input type="date" name="tgl_input" class="form-control" id="tgl_input"
 													placeholder="Tanggal Input">
 													<?= form_error('tgl_input', '<small class="text-danger pl-3">', '</small>') ?>
                       </div>

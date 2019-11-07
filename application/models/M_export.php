@@ -1,18 +1,7 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
- 
-    class M_export extends CI_Model {
- 
-        public function __construct()
-        {
-            $this->load->database();
-        }
-        
-        public function exportList() {
-            $this->db->select(array('tanggal', 'divisi', 'kode_barang', 'nama_barang', 'satuan', 'jumlah'));
-            $this->db->from('tb_barang_masuk');
-            $query = $this->db->get();
-            return $query->result();
-        }
-    }
-?>
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class M_export extends CI_Model {
+  public function view(){
+    return $this->db->get('tb_barang_masuk')->result(); // Tampilkan semua data yang ada di tabel siswa
+  }
+}

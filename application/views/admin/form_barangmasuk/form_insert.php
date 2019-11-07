@@ -60,7 +60,7 @@
                       </div>
                       <div class="form-group col-md-3">
                         <label for="tanggal" style="margin-left:5px">Tanggal</label>
-                        <input type="text" name="tanggal" style="margin-left:5px" class="form-control form_datetime"
+                        <input type="date" name="tanggal" style="margin-left:5px" class="form-control"
 													id="tanggal" placeholder="Masukan Tanggal">
 													<?= form_error('tanggal', '<small class="text-danger pl-3">', '</small>') ?>
                       </div>

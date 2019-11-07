@@ -6,8 +6,6 @@ class Admin extends CI_Controller{
   public function __construct(){
 		parent::__construct();
 		$this->load->model('M_admin');
-		$this->load->model('M_printer');
-		$this->load->model('M_barmas');
     $this->load->library('upload');
 	}
 
@@ -313,7 +311,7 @@ class Admin extends CI_Controller{
     if($this->form_validation->run() == TRUE)
     {
       $id_transaksi = $this->input->post('id_transaksi',TRUE);
-      $tanggal      = $this->input->post('tanggal',TRUE);
+      $tanggal      = date_format(date_create($this->input->post('tanggal')), 'Y-m-d');
       $divisi       = $this->input->post('divisi',TRUE);
       $kode_barang  = $this->input->post('kode_barang',TRUE);
       $nama_barang  = $this->input->post('nama_barang',TRUE);
@@ -349,7 +347,7 @@ class Admin extends CI_Controller{
     if($this->form_validation->run() == TRUE)
     {
       $id_transaksi = $this->input->post('id_transaksi',TRUE);
-      $tanggal      = $this->input->post('tanggal',TRUE);
+      $tanggal      = date_format(date_create($this->input->post('tanggal')), 'Y-m-d');
       $divisi       = $this->input->post('divisi',TRUE);
       $kode_barang  = $this->input->post('kode_barang',TRUE);
       $nama_barang  = $this->input->post('nama_barang',TRUE);
@@ -378,7 +376,7 @@ class Admin extends CI_Controller{
 
 		$id_transaksi = substr($this->uri->uri_string(3), 27);
 		 
-		$sql_data_barmas = "SELECT * FROM tb_barang_masuk";
+		$sql_data_barmas = "SELECT * FROM tb_barang_masuk ORDER BY tanggal ASC";
 
 		$sql_barmas    = "SELECT * id_transaksi 
 												FROM tb_barang_masuk
@@ -412,8 +410,8 @@ class Admin extends CI_Controller{
 				$pdf->Cell(250, 7, 'Laporan Data Barang Masuk', 0, 1, 'C');
 
 				//tabel hasil input barang masuk
-				$pdf->Cell(100,7, '',0,0,'C');
-				$pdf->Cell(40, 7, '  ID Transaksi  ', 1, 0, 'C');
+				$pdf->Cell(115,7, '',0,0,'C');
+				// $pdf->Cell(40, 7, '  ID Transaksi  ', 1, 0, 'C');
 				$pdf->Cell(25, 7, ' Tanggal  ', 1, 0, 'C');
 				$pdf->Cell(20, 7, '  Divisi  ', 1, 0, 'C');
 				$pdf->Cell(28, 7, '  Kode Barang  ', 1, 0, 'C');
@@ -424,9 +422,9 @@ class Admin extends CI_Controller{
 
 				$tampil = $this->db->query($sql_data_barmas)->result();
 				foreach ($tampil as $t) {
-				$pdf->Cell(100,7, '',0,0,'C');
-				$pdf->Cell(40, 7, $t->id_transaksi, 1, 0, 'C');
-				$pdf->Cell(25, 7, $t->tanggal, 1, 0, 'C');
+				$pdf->Cell(115,7, '',0,0,'C');
+				// $pdf->Cell(40, 7, $t->id_transaksi, 1, 0, 'C');
+				$pdf->Cell(25, 7, date('d-m-Y', strtotime($t->tanggal)), 1, 0, 'C');
 				$pdf->Cell(20, 7, $t->divisi, 1, 0, 'C');
 				$pdf->Cell(28, 7, $t->kode_barang, 1, 0, 'C');
 				$pdf->Cell(45, 7, $t->nama_barang, 1, 0, 'C');
@@ -564,8 +562,8 @@ class Admin extends CI_Controller{
     if($this->form_validation->run() === TRUE)
     {
       $id_transaksi   = $this->input->post('id_transaksi',TRUE);
-      $tanggal_masuk  = $this->input->post('tanggal',TRUE);
-      $tanggal_keluar = $this->input->post('tanggal_keluar',TRUE);
+      $tanggal_masuk  = date_format(date_create($this->input->post('tanggal_masuk')), 'Y-m-d');
+      $tanggal_keluar = date_format(date_create($this->input->post('tanggal_keluar')), 'Y-m-d');
       $divisi         = $this->input->post('divisi',TRUE);
       $kode_barang    = $this->input->post('kode_barang',TRUE);
       $nama_barang    = $this->input->post('nama_barang',TRUE);
@@ -598,7 +596,7 @@ class Admin extends CI_Controller{
 
 		$id_transaksi = substr($this->uri->uri_string(3), 27);
 		 
-		$sql_data_barkel = "SELECT * FROM tb_barang_keluar";
+		$sql_data_barkel = "SELECT * FROM tb_barang_keluar ORDER BY tanggal_masuk ASC";
 
 		$sql_barkel    = "SELECT * id_transaksi 
 												FROM tb_barang_keluar
@@ -632,8 +630,8 @@ class Admin extends CI_Controller{
 				$pdf->Cell(250, 7, 'Laporan Data Barang Keluar', 0, 1, 'C');
 
 				//tabel hasil input barang keluar
-				$pdf->Cell(60,7, '',0,0,'C');
-				$pdf->Cell(40, 7, '  ID Transaki  ', 1, 0, 'C');
+				$pdf->Cell(80,7, '',0,0,'C');
+				// $pdf->Cell(40, 7, '  ID Transaki  ', 1, 0, 'C');
 				$pdf->Cell(25, 7, ' Tgl Masuk ', 1, 0, 'C');
 				$pdf->Cell(25, 7, ' Tgl Keluar ', 1, 0, 'C');
 				$pdf->Cell(20, 7, '  Divisi  ', 1, 0, 'C');
@@ -646,10 +644,10 @@ class Admin extends CI_Controller{
 
 				$tampil = $this->db->query($sql_data_barkel)->result();
 				foreach ($tampil as $t) {
-				$pdf->Cell(60,7, '',0,0,'C');
-				$pdf->Cell(40, 7, $t->id_transaksi, 1, 0, 'C');
-				$pdf->Cell(25, 7, $t->tanggal_masuk, 1, 0, 'C');
-				$pdf->Cell(25, 7, $t->tanggal_keluar, 1, 0, 'C');
+				$pdf->Cell(80,7, '',0,0,'C');
+				// $pdf->Cell(40, 7, $t->id_transaksi, 1, 0, 'C');
+				$pdf->Cell(25, 7, date('d-m-Y', strtotime($t->tanggal_masuk)), 1, 0, 'C');
+				$pdf->Cell(25, 7, date('d-m-Y', strtotime($t->tanggal_keluar)), 1, 0, 'C');
 				$pdf->Cell(20, 7, $t->divisi, 1, 0, 'C');
 				$pdf->Cell(38, 7, $t->kode_barang, 1, 0, 'C');
 				$pdf->Cell(45, 7, $t->nama_barang, 1, 0, 'C');
@@ -951,7 +949,7 @@ class Admin extends CI_Controller{
 
     $id_pc = substr($this->uri->uri_string(3), 27);
      
-    $sql_data_pc = "SELECT * FROM tb_pc";
+    $sql_data_pc = "SELECT * FROM tb_pc ORDER BY tgl_input ASC";
 
     $sql_pc    = "SELECT * id_pc 
                         FROM tb_pc
@@ -986,7 +984,7 @@ class Admin extends CI_Controller{
 
         //tabel hasil input data komputer
         $pdf->Cell(15,7, '',0,0,'C');
-        $pdf->Cell(10, 7, '  No  ', 1, 0, 'C');
+        // $pdf->Cell(10, 7, '  No  ', 1, 0, 'C');
         $pdf->Cell(25, 7, ' Tanggal  ', 1, 0, 'C');
         $pdf->Cell(30, 7, '  Dept / Divisi  ', 1, 0, 'C');
         $pdf->Cell(30, 7, ' Hostname  ', 1, 0, 'C');
@@ -1006,8 +1004,8 @@ class Admin extends CI_Controller{
         $tampil = $this->db->query($sql_data_pc)->result();
         foreach ($tampil as $t) {
         $pdf->Cell(15,7, '',0,0,'C');
-        $pdf->Cell(10, 7, $t->id_pc, 1, 0, 'C');
-        $pdf->Cell(25, 7, $t->tgl_input, 1, 0, 'C');
+        // $pdf->Cell(10, 7, $t->id_pc, 1, 0, 'C');
+        $pdf->Cell(25, 7, date('d-m-Y', strtotime($t->tgl_input)), 1, 0, 'C');
         $pdf->Cell(30, 7, $t->divisi, 1, 0, 'C');
         $pdf->Cell(30, 7, $t->hostname, 1, 0, 'C');
         $pdf->Cell(25, 7, $t->user, 1, 0, 'C');
@@ -1221,7 +1219,7 @@ class Admin extends CI_Controller{
 
     $id_printer = substr($this->uri->uri_string(3), 27);
      
-    $sql_data_printer = "SELECT * FROM tb_printer";
+    $sql_data_printer = "SELECT * FROM tb_printer ORDER BY tgl_input ASC";
 
     $sql_printer    = "SELECT * id_printer 
                         FROM tb_printer
@@ -1256,7 +1254,7 @@ class Admin extends CI_Controller{
 
         //tabel hasil input printer
         $pdf->Cell(25,7, '',0,0,'C');
-        $pdf->Cell(10, 7, '  No  ', 1, 0, 'C');
+        // $pdf->Cell(10, 7, '  No  ', 1, 0, 'C');
         $pdf->Cell(25, 7, ' Tanggal  ', 1, 0, 'C');
         $pdf->Cell(20, 7, '  Kategori  ', 1, 0, 'C');
         $pdf->Cell(45, 7, ' Merk  ', 1, 0, 'C');
@@ -1265,7 +1263,7 @@ class Admin extends CI_Controller{
 				$pdf->Cell(25, 7, '  Warna  ', 1, 0, 'C');
         $pdf->Cell(20, 7, '  Qty Out  ', 1, 0, 'C');
         $pdf->Cell(23, 7, ' Kondisi  ', 1, 0, 'C');
-				$pdf->Cell(23, 7, '  Pengguna  ', 1, 0, 'C');
+				$pdf->Cell(25, 7, '  Pengguna  ', 1, 0, 'C');
 				$pdf->Cell(23, 7, ' Lokasi  ', 1, 0, 'C');
 				$pdf->Cell(27, 7, '  Kepemilikan  ', 1, 0, 'C');
 				$pdf->Cell(23, 7, ' Status  ', 1, 1, 'C');
@@ -1274,8 +1272,8 @@ class Admin extends CI_Controller{
         $tampil = $this->db->query($sql_data_printer)->result();
         foreach ($tampil as $t) {
         $pdf->Cell(25,7, '',0,0,'C');
-        $pdf->Cell(10, 7, $t->id_printer, 1, 0, 'C');
-        $pdf->Cell(25, 7, $t->tgl_input, 1, 0, 'C');
+        // $pdf->Cell(10, 7, $t->id_printer, 1, 0, 'C');
+        $pdf->Cell(25, 7, date('d-m-Y', strtotime($t->tgl_input)), 1, 0, 'C');
         $pdf->Cell(20, 7, $t->kategori, 1, 0, 'C');
         $pdf->Cell(45, 7, $t->merk, 1, 0, 'C');
         $pdf->Cell(42, 7, $t->type, 1, 0, 'C');
@@ -1283,7 +1281,7 @@ class Admin extends CI_Controller{
 				$pdf->Cell(25, 7, $t->warna, 1, 0, 'C');
         $pdf->Cell(20, 7, $t->qty_out, 1, 0, 'C');
 				$pdf->Cell(23, 7, $t->kondisi, 1, 0, 'C');
-				$pdf->Cell(23, 7, $t->pengguna, 1, 0, 'C');
+				$pdf->Cell(25, 7, $t->pengguna, 1, 0, 'C');
 				$pdf->Cell(23, 7, $t->lokasi, 1, 0, 'C');
 				$pdf->Cell(27, 7, $t->kepemilikan, 1, 0, 'C');
 				$pdf->Cell(23, 7, $t->status, 1, 1, 'C');
@@ -1303,5 +1301,271 @@ class Admin extends CI_Controller{
             // END PRINTER
 	####################################
 	
+	####################################
+        // DATA PPI
+  ####################################
+
+  // public function p_one()
+  // {
+	// 	$data['title'] = 'Inventory EDP | Form Data PPI';
+	// 	$data['list_divisi'] = $this->M_admin->select('tb_divisi');
+  //   $data['list_satuan'] = $this->M_admin->select('tb_satuan');
+  //   $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user',$this->session->userdata('name'));
+  //   $this->load->view('admin/ppi/ppi_pertama',$data);
+  // }
+
+  // public function tabel_ppi_pertama()
+  // {
+		
+  //   $data = array(
+  //             'list_data' => $this->M_admin->select('ppi_pertama'),
+  //             'avatar'    => $this->M_admin->get_data_gambar('tb_upload_gambar_user',$this->session->userdata('name'))
+	// 					);
+	// 	$data['title'] = 'Inventory EDP | Data PPI'; 				
+  //   $this->load->view('admin/tabel/tabel_ppi_pertama',$data);
+  // }
+
+  // public function update_ppi_pertama($id)
+  // {
+	// 	$data['title'] = 'Inventory EDP | Update Data PPI'; 
+	// 	$where = array('id' => $id);
+	// 	$data['list_divisi'] = $this->M_admin->select('tb_divisi');
+  //   $data['data_ppi_update'] = $this->M_admin->get_data('ppi_pertama',$where);
+  //   $data['list_satuan'] = $this->M_admin->select('tb_satuan');
+  //   $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user',$this->session->userdata('name'));
+  //   $this->load->view('admin/ppi/form_update',$data);
+  // }
+
+  // public function delete_ppi_pertama($id)
+  // {
+  //   $where = array('id' => $id);
+  //   $this->M_admin->delete('ppi_pertama',$where);
+  //   redirect(base_url('admin/tabel_ppi_pertama'));
+  // }
+
+  // public function proses_ppi_pertama_insert()
+  // {
+	// 	$this->form_validation->set_rules('tgl_input','Tanggal Input','trim|required');
+	// 	$this->form_validation->set_rules('nama_pasien','Nama Pasien','trim|required');
+	// 	$this->form_validation->set_rules('tgl_psg_k','Tanggal Pasang Kateter','trim|required');
+	// 	$this->form_validation->set_rules('tgl_lps_k','Tanggal Lepas Kateter','trim|required');
+	// 	$this->form_validation->set_rules('infeksi_satu','Infeksi','trim|required');
+	// 	$this->form_validation->set_rules('tgl_psg_in','Tanggal Pasang Infus','trim|required');
+  //   $this->form_validation->set_rules('tgl_lps_in','Tanggal Lepas Infus','trim|required');
+	// 	$this->form_validation->set_rules('infeksi_dua','Infeksi','trim|required');
+	// 	$this->form_validation->set_rules('tgl_opr','Tanggal Operasi','trim|required');
+  //   $this->form_validation->set_rules('tgl_plg','Tanggal Pulang','trim|required');
+	// 	$this->form_validation->set_rules('infeksi_tiga','Infeksi','trim|required');
+	// 	$this->form_validation->set_rules('tgl_psg_ven','Tanggal Pasang Ventilator','trim|required');
+  //   $this->form_validation->set_rules('tgl_lps_ven','Tanggal Lepas Ventilator','trim|required');
+	// 	$this->form_validation->set_rules('infeksi_empat','Infeksi','trim|required');
+	// 	$this->form_validation->set_rules('keterangan','Keterangan','trim|required');
+	// 	$this->form_validation->set_message('required', '{field} wajib diisi');
+
+  //   if($this->form_validation->run() == TRUE)
+  //   {
+  //     $id = $this->input->post('id',TRUE);
+  //     $tgl_input      = date_format(date_create($this->input->post('tgl_input')), 'Y-m-d');
+  //     $nama_pasien       = $this->input->post('nama_pasien',TRUE);
+  //     $tgl_psg_k  = $this->input->post('tgl_psg_k',TRUE);
+  //     $tgl_lps_k  = $this->input->post('tgl_lps_k',TRUE);
+  //     $infeksi_satu       = $this->input->post('infeksi_satu',TRUE);
+	// 		$tgl_psg_in       = $this->input->post('tgl_psg_in',TRUE);
+	// 		$tgl_lps_in       = $this->input->post('tgl_lps_in',TRUE);
+	// 		$infeksi_dua       = $this->input->post('infeksi_dua',TRUE);
+	// 		$tgl_opr       = $this->input->post('tgl_opr',TRUE);
+	// 		$tgl_plg       = $this->input->post('tgl_plg',TRUE);
+	// 		$infeksi_tiga      = $this->input->post('infeksi_tiga',TRUE);
+	// 		$tgl_psg_ven       = $this->input->post('tgl_psg_ven',TRUE);
+	// 		$tgl_lps_ven       = $this->input->post('tgl_lps_ven',TRUE);
+	// 		$infeksi_empat       = $this->input->post('infeksi_empat',TRUE);
+	// 		$keterangan       = $this->input->post('keterangan',TRUE);
+
+  //     $data = array(
+  //           'id' => $id,
+  //           'tgl_input'      => $tgl_input,
+  //           'nama_pasien'       => $nama_pasien,
+  //           'tgl_psg_k'  => $tgl_psg_k,
+  //           'tgl_lps_k'  => $tgl_lps_k,
+  //           'infeksi_satu'       => $infeksi_satu,
+	// 					'tgl_psg_in'       => $tgl_psg_in,
+	// 					'tgl_lps_in'  => $tgl_lps_in,
+	// 					'infeksi_dua'       => $infeksi_dua,
+	// 					'tgl_opr'  => $tgl_opr,
+  //           'tgl_plg'  => $tgl_plg,
+	// 					'infeksi_tiga'       => $infeksi_satu,
+	// 					'tgl_psg_ven'  => $tgl_psg_ven,
+  //           'tgl_lps_ven'  => $tgl_lps_k,
+	// 					'infeksi_empat'       => $infeksi_empat,
+	// 					'keterangan'       => $keterangan
+  //     );
+  //     $this->M_admin->insert('ppi_pertama',$data);
+
+  //     $this->session->set_flashdata('msg_berhasil','Data Barang Berhasil di Tambahkan');
+  //     redirect(base_url('admin/ppi'));
+  //   }else {
+  //     $data['list_satuan'] = $this->M_admin->select('tb_satuan');
+  //     $this->load->view('admin/ppi/ppi_pertama',$data);
+  //   }
+  // }
+
+  // public function proses_ppi_pertama_update()
+  // {
+  //   $this->form_validation->set_rules('tgl_input','Tanggal Input','trim|required');
+	// 	$this->form_validation->set_rules('nama_pasien','Nama Pasien','trim|required');
+	// 	$this->form_validation->set_rules('tgl_psg_k','Tanggal Pasang Kateter','trim|required');
+	// 	$this->form_validation->set_rules('tgl_lps_k','Tanggal Lepas Kateter','trim|required');
+	// 	$this->form_validation->set_rules('infeksi_satu','Infeksi','trim|required');
+	// 	$this->form_validation->set_rules('tgl_psg_in','Tanggal Pasang Infus','trim|required');
+  //   $this->form_validation->set_rules('tgl_lps_in','Tanggal Lepas Infus','trim|required');
+	// 	$this->form_validation->set_rules('infeksi_dua','Infeksi','trim|required');
+	// 	$this->form_validation->set_rules('tgl_opr','Tanggal Operasi','trim|required');
+  //   $this->form_validation->set_rules('tgl_plg','Tanggal Pulang','trim|required');
+	// 	$this->form_validation->set_rules('infeksi_tiga','Infeksi','trim|required');
+	// 	$this->form_validation->set_rules('tgl_psg_ven','Tanggal Pasang Ventilator','trim|required');
+  //   $this->form_validation->set_rules('tgl_lps_ven','Tanggal Lepas Ventilator','trim|required');
+	// 	$this->form_validation->set_rules('infeksi_empat','Infeksi','trim|required');
+	// 	$this->form_validation->set_rules('keterangan','Keterangan','trim|required');
+	// 	$this->form_validation->set_message('required', '{field} wajib diisi');
+
+  //   if($this->form_validation->run() == TRUE)
+  //   {
+  //     $id = $this->input->post('id',TRUE);
+  //     $tgl_input      = date_format(date_create($this->input->post('tgl_input')), 'Y-m-d');
+  //     $nama_pasien       = $this->input->post('nama_pasien',TRUE);
+  //     $tgl_psg_k  = $this->input->post('tgl_psg_k',TRUE);
+  //     $tgl_lps_k  = $this->input->post('tgl_lps_k',TRUE);
+  //     $infeksi_satu       = $this->input->post('infeksi_satu',TRUE);
+	// 		$tgl_psg_in       = $this->input->post('tgl_psg_in',TRUE);
+	// 		$tgl_lps_in  = $this->input->post('tgl_lps_in',TRUE);
+	// 		$infeksi_dua       = $this->input->post('infeksi_dua',TRUE);
+	// 		$tgl_opr       = $this->input->post('tgl_opr',TRUE);
+	// 		$tgl_plg  = $this->input->post('tgl_plg',TRUE);
+	// 		$infeksi_tiga       = $this->input->post('infeksi_tiga',TRUE);
+	// 		$tgl_psg_ven       = $this->input->post('tgl_psg_ven',TRUE);
+	// 		$tgl_lps_ven  = $this->input->post('tgl_lps_ven',TRUE);
+	// 		$infeksi_empat       = $this->input->post('infeksi_empat',TRUE);
+	// 		$keterangan       = $this->input->post('keterangan',TRUE);
+			
+
+  //     $where = array('id' => $id);
+  //     $data = array(
+  //           'id' => $id,
+  //           'tgl_input'      => $tgl_input,
+  //           'nama_pasien'       => $nama_pasien,
+  //           'tgl_psg_k'  => $tgl_psg_k,
+  //           'tgl_lps_k'  => $tgl_lps_k,
+  //           'infeksi_satu'       => $infeksi_satu,
+	// 					'tgl_psg_in'       => $tgl_psg_in,
+	// 					'tgl_lps_in'  => $tgl_lps_in,
+	// 					'infeksi_dua'       => $infeksi_tiga,
+	// 					'tgl_opr'  => $tgl_opr,
+  //           'tgl_plg'  => $tgl_plg,
+	// 					'infeksi_tiga'       => $infeksi_satu,
+	// 					'tgl_psg_ven'  => $tgl_psg_ven,
+  //           'tgl_lps_ven'  => $tgl_lps_k,
+	// 					'infeksi_empat'       => $infeksi_empat,
+	// 					'keterangan'       => $keterangan
+  //     );
+  //     $this->M_admin->update('ppi_pertama',$data,$where);
+  //     $this->session->set_flashdata('msg_berhasil','Data Barang Berhasil di Update');
+  //     redirect(base_url('admin/tabel_ppi_pertama'));
+  //   }else{
+  //     $this->load->view('admin/ppi/form_update');
+	// 	}
+	// }
+	
+	// public function cetak_ppi_pertama(){
+
+	// 	$id = substr($this->uri->uri_string(3), 27);
+		 
+	// 	$sql_data_p_one = "SELECT * FROM ppi_pertama ORDER BY tgl_input ASC";
+
+	// 	$sql_barmas    = "SELECT * id 
+	// 											FROM ppi_pertama
+	// 											WHERE id='$id'";
+
+	// 			$this->load->library('pdf');
+	// 			$pdf = new FPDF('l', 'mm', array(410,380));
+				// membuat halaman baru
+				// $pdf->AddPage();
+				// setting jenis font yang akan digunakan
+				// $pdf->SetFont('Arial', 'B', 16);
+
+				// $pdf->Image('http://localhost/project-one/assets/img/rsia_family.jpeg', 75, 5, 30);
+				// $pdf->Image('', )
+				// mencetak string 
+				// $pdf->Cell(65, 7, '', 0, 0, 'C');
+				// $pdf->Cell(260, 7, 'RSIA Family', 0, 1, 'C');
+				// $pdf->SetFont('Arial', '', 12);
+				// $pdf->Cell(45, 7, '', 0, 0, 'C');
+				// $pdf->Cell(300, 7, 'Jl. Pluit Mas Raya 1 Blok A No.2A-5A, RT.1/RW.18, Pejagalan, Kec. Penjaringan,', 0, 1, 'C');
+				// $pdf->Cell(43, 7, '', 0, 0, 'C');
+				// $pdf->Cell(300, 7, 'Kota Jakarta Utara, Daerah Khusus Ibukota Jakarta 14450', 0, 1, 'C');
+				// $pdf->Cell(83, 7, '', 0, 0, 'C');
+				// $pdf->Cell(220, 7, 'Telepon : (021) 669 5066. E-mail: info@rsiafamily.com ', 0, 1, 'C');
+				// $pdf->Line(10,40, 430-30, 40);
+				// $pdf->Line(10,40.8, 430-30, 40.8);
+				
+				// $pdf->Cell(30, 7, '', 0, 1);
+
+				// $pdf->Cell(70, 7, '', 0, 0, 'C');
+				// $pdf->Cell(250, 7, 'Laporan Data PPI Masuk', 0, 1, 'C');
+
+				//tabel hasil input barang masuk
+		// 		$pdf->Cell(100,7, '',0,0,'C');
+		// 		$pdf->Cell(10, 7, '  ID  ', 1, 0, 'C');
+		// 		$pdf->Cell(20, 7, ' Tgl Input  ', 1, 0, 'C');
+		// 		$pdf->Cell(20, 7, ' Nama Pasien ', 1, 0, 'C');
+		// 		$pdf->Cell(20, 7, ' Tgl Psg Ka  ', 1, 0, 'C');
+		// 		$pdf->Cell(20, 7, '  Tgl Lps Ka  ', 1, 0, 'C');
+		// 		$pdf->Cell(25, 7, '  Infeksi  ', 1, 0, 'C');
+		// 		$pdf->Cell(20, 7, ' Tgl Psg In  ', 1, 0, 'C');
+		// 		$pdf->Cell(20, 7, '  Tgl Lps In  ', 1, 0, 'C');
+		// 		$pdf->Cell(25, 7, '  Infeksi  ', 1, 0, 'C');
+		// 		$pdf->Cell(20, 7, ' Tgl Opr  ', 1, 0, 'C');
+		// 		$pdf->Cell(20, 7, '  Tgl Plg  ', 1, 0, 'C');
+		// 		$pdf->Cell(25, 7, '  Infeksi  ', 1, 0, 'C');
+		// 		$pdf->Cell(20, 7, ' Tgl Psg Ven  ', 1, 0, 'C');
+		// 		$pdf->Cell(20, 7, '  Tgl Lps Ven ', 1, 0, 'C');
+		// 		$pdf->Cell(25, 7, '  Infeksi  ', 1, 0, 'C');
+		// 		$pdf->Cell(25, 7, ' Keterangan  ', 1, 1, 'C');
+
+
+		// 		$tampil = $this->db->query($sql_data_ppimasuk)->result();
+		// 		foreach ($tampil as $t) {
+		// 		$pdf->Cell(100,7, '',0,0,'C');
+		// 		$pdf->Cell(10, 7, $t->id, 1, 0, 'C');
+		// 		$pdf->Cell(20, 7, $t->tgl_input, 1, 0, 'C');
+		// 		$pdf->Cell(20, 7, $t->nama_pasien, 1, 0, 'C');
+		// 		$pdf->Cell(20, 7, $t->tgl_psg_k, 1, 0, 'C');
+		// 		$pdf->Cell(20, 7, $t->tgl_lps_k, 1, 0, 'C');
+		// 		$pdf->Cell(25, 7, $t->infeksi_satu, 1, 0, 'C');
+		// 		$pdf->Cell(20, 7, $t->tgl_psg_in, 1, 0, 'C');
+		// 		$pdf->Cell(20, 7, $t->tgl_lps_in, 1, 0, 'C');
+		// 		$pdf->Cell(25, 7, $t->infeksi_dua, 1, 0, 'C');
+		// 		$pdf->Cell(20, 7, $t->tgl_opr, 1, 0, 'C');
+		// 		$pdf->Cell(20, 7, $t->tgl_plg, 1, 0, 'C');
+		// 		$pdf->Cell(25, 7, $t->infeksi_tiga, 1, 0, 'C');
+		// 		$pdf->Cell(20, 7, $t->tgl_psg_ven, 1, 0, 'C');
+		// 		$pdf->Cell(20, 7, $t->tgl_lps_ven, 1, 0, 'C');
+		// 		$pdf->Cell(25, 7, $t->infeksi_empat, 1, 0, 'C');
+		// 		$pdf->Cell(25, 7, $t->keterangan, 1, 1, 'C');
+
+		// 		}
+
+		// 		$pdf->Cell(130, 10, '', 0, 1);
+		// 		$pdf->Cell(130, 10, '', 0, 1);
+		// 		$pdf->Cell(110, 10, '', 0, 0);
+		// 		$pdf->Cell(200, 10, 'Tanggal Cetak', 0, 0, 'R');
+		// 		$pdf->Cell(50, 10, ': '.date('d-m-Y '), 0, 0, 'R');
+
+
+		// 		$pdf->Output();
+		// }
+		
+  ####################################
+      // END DATA PPI
+	####################################
 }
 ?>

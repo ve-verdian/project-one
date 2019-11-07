@@ -56,7 +56,7 @@
 											<input type="hidden" name="id_pc" value="<?=$dpc->id_pc?>">
                       <label for="tgl_input" class="col-sm-2 col-form-label">Tanggal Input</label>
                       <div class="col-sm-10">
-												<input type="text" name="tgl_input" class="form-control form_datetime" id="tgl_input" placeholder="Tanggal Input" value="<?=$dpc->tgl_input?>">
+												<input type="date" name="tgl_input" class="form-control" id="tgl_input" placeholder="Tanggal Input" value="<?=$dpc->tgl_input?>">
                       </div>
                     </div>
                     <div class="form-group row">

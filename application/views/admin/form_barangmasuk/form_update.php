@@ -60,7 +60,7 @@
                       </div>
                       <div class="form-group col-md-3">
                         <label for="tanggal" style="margin-left:5px">Tanggal</label>
-                        <input type="text" name="tanggal" style="margin-left:5px" class="form-control" id="tanggal"
+                        <input type="date" name="tanggal" style="margin-left:5px" class="form-control" id="tanggal"
                           readonly="readonly" value="<?=$d->tanggal?>">
                       </div>
                     </div>

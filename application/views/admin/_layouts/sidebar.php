@@ -121,7 +121,29 @@
                 <p>Lampirkan File</p>
               </a>
             </li>
+					</ul>
+					<!-- <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-file-medical-alt"></i>
+            <p style="font-family: 'Be Vietnam', sans-serif;">Data PPI
+              <i class="fas fa-caret-left right"></i>
+            </p>
+					</a>
+					<ul class="nav nav-treeview">
+					<li class="nav-item">
+              <a href="<?= base_url('admin/p_one')?>" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Data PPI Pertama</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?= base_url('admin/ppi')?>" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Data PPI Kedua</p>
+              </a>
+            </li>
           </ul>
+        </li> -->
         <li class="nav-header" style="font-family: 'Fredoka One', cursive;">SETTING</li>
         <li class="nav-item">
           <a href="<?= base_url('admin/profile')?>" class="nav-link">

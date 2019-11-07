@@ -55,7 +55,7 @@
                 <a href="<?=base_url('admin/tabel_barangmasuk')?>" style="margin-bottom:10px;" type="button"
                   class="btn btn-primary" name="tambah_data"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah
                   Data Keluar</a>
-                <a href="#" style="margin-bottom:10px;" type="button" class="btn btn-success" name="export_excel"><i
+                <a href="<?=base_url('excel/export_barkel')?>" style="margin-bottom:10px;" type="button" class="btn btn-success" name="export_excel"><i
                     class="fa fa-plus-circle" aria-hidden="true"></i> Export Excel</a>
                 <a href="<?=base_url('admin/cetak_barkel')?>" style="margin-bottom:10px;" type="button" class="btn btn-danger" name="cetak_pdf"><i
                     class="fa fa-plus-circle" aria-hidden="true"></i> Cetak Pdf</a>
@@ -82,8 +82,10 @@
                       </th>
                       <th width="5%">
                         <center>Jumlah
+											</th>
+											<th width="5%">
+                        <center>Satuan
                       </th>
-                      <!-- <th>Satuan</th> -->
                       <th width="20%">
                         <center>Unit Order
                       </th>
@@ -99,10 +101,10 @@
                       </td>
                       <!-- <td><?=$dd->id_transaksi?></td> -->
                       <td width="8%">
-                        <center><?=$dd->tanggal_masuk?>
+                        <center><?=date('d-m-Y', strtotime($dd->tanggal_masuk))?>
                       </td>
                       <td width="8%">
-                        <center><?=$dd->tanggal_keluar?>
+                        <center><?=date('d-m-Y', strtotime($dd->tanggal_keluar))?>
                       </td>
                       <td width="15%">
                         <center><?=$dd->divisi?>
@@ -114,7 +116,8 @@
                       <td width="5%">
                         <center><?=$dd->jumlah?>
                       </td>
-                      <!-- <td><?=$dd->satuan?></td> -->
+                      <td width="5%">
+												<center><?=$dd->satuan?></td>
                       <td width="20%"><?=$dd->unit_order?></td>
                     </tr>
                     <?php $no++; ?>

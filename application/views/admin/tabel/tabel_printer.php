@@ -45,7 +45,7 @@
               <?php } ?>
 
 						<a href="<?=base_url('admin/data_printer')?>" style="margin-bottom:10px;" type="button" class="btn btn-primary" name="tambah_data"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Data Printer</a>
-            <a href="#" style="margin-bottom:10px;" type="button" class="btn btn-success" name="export_excel"><i class="fa fa-plus-circle" aria-hidden="true"></i> Export Excel</a>
+            <a href="<?=base_url('excel/export_printer')?>" style="margin-bottom:10px;" type="button" class="btn btn-success" name="export_excel"><i class="fa fa-plus-circle" aria-hidden="true"></i> Export Excel</a>
 						<a href="<?=base_url('admin/cetak_printer')?>" style="margin-bottom:10px;" type="button" class="btn btn-danger" name="cetak_pdf"><i class="fa fa-plus-circle" aria-hidden="true"></i> Cetak Pdf</a>    
 							<table id="example1" class="table table-responsive table-bordered table-striped">
                 <thead>
@@ -78,7 +78,7 @@
                   <?php $no = 1;?>
                   <?php foreach($list_data as $dd): ?>
                     <td width="5%"><center><?=$no?></td>
-                    <td width="15%"><center><?=$dd->tgl_input?></td>
+                    <td width="15%"><center><?=date('d-m-Y', strtotime($dd->tgl_input))?></td>
                     <td width="15%"><?=$dd->kategori?></td>
 										<td width="25%"><?=$dd->merk?></td>
                     <td width="25%"><?=$dd->type?></td>
@@ -94,7 +94,7 @@
                     <td width="12%"><center><?=$dd->qty?></td>
 										<td width="12%"><center><?=$dd->backup?></td>
 										<td width="15%"><center><?=$dd->kepemilikan?></td>
-										<td width="20%"><?=$dd->posisi_skg?></td>
+										<td width="20%"><center><?=$dd->posisi_skg?></td>
 										<td width="15%"><center><a type="button" class="btn btn-success center-block"  href="<?=base_url('admin/update_printer/'.$dd->id_printer)?>" name="btn_update" style="margin:auto;"><i class="fas fa-edit"  aria-hidden="true"></i></a></td>
 										<td width="15%"><center><a type="button" class="btn btn-danger btn-delete center-block"  href="<?=base_url('admin/delete_printer/'.$dd->id_printer)?>" name="btn_delete" style="margin:auto;"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
                 </tr>
