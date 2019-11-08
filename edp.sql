@@ -264,7 +264,7 @@ INSERT INTO `tb_printer` (`id_printer`, `tgl_input`, `kategori`, `merk`, `type`,
 (34, '2019-10-30', 'Printer', 'HP Laserjet', 'P1102', 'VNF8S55929', 0, '', 'Baik', 'Aktif', '', 'Abu-abu', 'Umum', 'Lantai 5', 1, 'Ya', 'RS', 'EDP / IT', '2019-11-05 09:12:07', NULL),
 (35, '2019-11-05', 'Printer', 'Zebra', 'GC240t', '54J143001144', 0, '', 'Kurang', 'Aktif', 'Kertas label etiket keluar tidak beraturan', 'Krem', 'F. Rajal', 'Lantai 5', 1, 'Tidak', 'Vendor', 'EDP / IT', '2019-11-05 09:46:36', '2019-11-06 10:48:58'),
 (36, '2019-11-06', 'Printer', 'Canon', 'IP2770', 'HRJV96210', 1, '', 'Baik', 'Aktif', 'Back up sementara di pakai Rekam Medis Ranap', 'Hitam', 'MR - 05', 'Lantai 5', 0, 'Tidak', 'Vendor', 'MR - 05', '2019-11-05 15:22:13', '2019-11-06 11:01:40'),
-(37, '2019-11-06', 'Printer', 'Epson', 'LX-310', 'QTFY286906', 0, '', 'Baik', 'Aktif', 'Sudah di tes semuanya oke, di backup sementara menggunakan Epson LX-310 yang baru dengan SN : Q7FY453219', 'Abu-abu', 'F. Rajal', 'Lantai 5', 1, 'Tidak', 'RSIA Family', 'EDP / IT', '2019-11-06 10:53:56', '2019-11-06 14:37:02'),
+(37, '2019-11-06', 'Printer', 'Epson', 'LX-310', 'QTFY286906', 0, '', 'Baik', 'Aktif', 'Sudah di tes semuanya oke, di backup sementara menggunakan Epson LX-310 yang baru dengan SN : Q7FY453219', 'Abu-abu', 'F. Rajal', 'Lantai 5', 1, 'Tidak', 'RS', 'EDP / IT', '2019-11-06 10:53:56', '2019-11-06 14:37:02'),
 (39, '2019-11-07', 'Printer', 'Epson', 'LX-310', 'Q7FY210126', 0, '', 'Rusak', 'Aktif', 'Buat ngeprint macet, sekarang di backup printer punya F. Rajal dengan SN : Q7FY279307', 'Abu-abu', 'Adm. Ranap', 'Lobby', 1, 'Ya', 'Vendor', 'EDP / IT', '2019-11-07 12:46:49', '2019-11-07 12:47:49');
 
 -- --------------------------------------------------------

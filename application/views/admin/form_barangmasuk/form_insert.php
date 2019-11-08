@@ -53,18 +53,17 @@
                   <div class="card-body">
                     <div class="form-row">
                       <div class="form-group col-md-3">
-                        <label for="id_transaksi" style="margin-left:5px">ID Transaksi</label>
-                        <input type="text" name="id_transaksi" style="margin-left:5px" class="form-control"
+                        <label for="id_transaksi" >ID Transaksi</label>
+                        <input type="text" name="id_transaksi"  class="form-control"
                           id="id_transaksi" readonly="readonly"
                           value="WG-<?=date("Y");?><?=random_string('numeric', 8);?>">
                       </div>
                       <div class="form-group col-md-3">
-                        <label for="tanggal" style="margin-left:5px">Tanggal</label>
-                        <input type="date" name="tanggal" style="margin-left:5px" class="form-control"
+                        <label for="tanggal" >Tanggal</label>
+                        <input type="date" name="tanggal"  class="form-control"
 													id="tanggal" placeholder="Masukan Tanggal">
 													<?= form_error('tanggal', '<small class="text-danger pl-3">', '</small>') ?>
                       </div>
-                    </div>
                     <div class="form-group col-md-6">
                       <label for="divisi">Divisi</label>
                       <select name="divisi" class="form-control">
@@ -73,32 +72,32 @@
                         <option value="<?=$ld->kode_divisi?>"><?=$ld->nama_divisi?></option>
                         <?php } ?>
                       </select>
-                    </div>
-                  </div>
+										</div>
+										</div>
                   <div class="form-row">
-                    <div class="form-group col-md-3">
-                      <label for="kode_barang" style="margin-left:25px">No. Seri / Kode Barang</label>
-                      <input type="text" name="kode_barang" style="margin-left:25px" class="form-control"
+                    <div class="form-group col-md-6">
+                      <label for="kode_barang">No. Seri / Kode Barang</label>
+                      <input type="text" name="kode_barang" class="form-control"
 												id="kode_barang" placeholder="No. Seri / Kode Barang">
 												<?= form_error('kode_barang', '<small class="text-danger pl-3">', '</small>') ?>
                     </div>
-                    <div class="form-group col-md-3">
-                      <label for="nama_barang" style="margin-left:25px">Nama Barang</label>
-                      <input type="text" name="nama_barang" style="margin-left:25px" class="form-control"
+                    <div class="form-group col-md-6">
+                      <label for="nama_barang">Nama Barang</label>
+                      <input type="text" name="nama_barang" class="form-control"
 												id="nama_barang" placeholder="Nama Barang">
 												<?= form_error('nama_barang', '<small class="text-danger pl-3">', '</small>') ?>
                     </div>
                   </div>
                   <div class="form-row">
-                    <div class="form-group col-md-3">
-                      <label for="jumlah" style="margin-left:25px">Jumlah</label>
-                      <input type="number" name="jumlah" style="margin-left:25px" class="form-control" id="jumlah"
+                    <div class="form-group col-md-6">
+                      <label for="jumlah">Jumlah</label>
+                      <input type="number" name="jumlah" class="form-control" id="jumlah"
 												placeholder="Jumlah">
 												<?= form_error('jumlah', '<small class="text-danger pl-3">', '</small>') ?>
                     </div>
-                    <div class="form-group col-md-3">
-                      <label for="satuan" style="margin-left:25px">Satuan</label>
-                      <select name="satuan" class="form-control" style="margin-left:25px">
+                    <div class="form-group col-md-6">
+                      <label for="satuan">Satuan</label>
+                      <select name="satuan" class="form-control">
                         <option value="" selected="">-- Pilih --</option>
                         <?php foreach($list_satuan as $s){ ?>
                         <option value="<?=$s->kode_satuan?>"><?=$s->nama_satuan?></option>

@@ -54,43 +54,42 @@
                     <div class="form-row">
                       <?php foreach($data_barang_update as $d){ ?>
                       <div class="form-group col-md-3">
-                        <label for="id_transaksi" style="margin-left:5px">ID Transaksi</label>
-                        <input type="text" name="id_transaksi" style="margin-left:5px" class="form-control"
+                        <label for="id_transaksi" >ID Transaksi</label>
+                        <input type="text" name="id_transaksi"  class="form-control"
                           id="id_transaksi" readonly="readonly" value="<?=$d->id_transaksi?>">
                       </div>
                       <div class="form-group col-md-3">
-                        <label for="tanggal" style="margin-left:5px">Tanggal</label>
-                        <input type="date" name="tanggal" style="margin-left:5px" class="form-control" id="tanggal"
+                        <label for="tanggal" >Tanggal</label>
+                        <input type="date" name="tanggal"  class="form-control" id="tanggal"
                           readonly="readonly" value="<?=$d->tanggal?>">
                       </div>
-                    </div>
                     <div class="form-group col-md-6">
-                      <label for="divisi" style="margin-left:5px">Divisi</label>
-                      <input type="text" name="divisi" style="margin-left:5px" class="form-control" id="divisi"
+                      <label for="divisi" >Divisi</label>
+                      <input type="text" name="divisi"  class="form-control" id="divisi"
                         readonly="readonly" value="<?=$d->divisi?>">
-                    </div>
-                  </div>
+										</div>
+										</div>
                   <div class="form-row">
-                    <div class="form-group col-md-3">
-                      <label for="kode_barang" style="margin-left:25px">No. Seri / Kode Barang</label>
-                      <input type="text" name="kode_barang" readonly="readonly" style="margin-left:25px"
+                    <div class="form-group col-md-6">
+                      <label for="kode_barang">No. Seri / Kode Barang</label>
+                      <input type="text" name="kode_barang" readonly="readonly"
                         class="form-control" id="kode_barang" value="<?=$d->kode_barang?>">
                     </div>
-                    <div class="form-group col-md-3">
-                      <label for="nama_barang" style="margin-left:25px">Nama Barang</label>
-                      <input type="text" name="nama_barang" style="margin-left:25px" class="form-control"
+                    <div class="form-group col-md-6">
+                      <label for="nama_barang">Nama Barang</label>
+                      <input type="text" name="nama_barang" class="form-control"
                         id="nama_barang" value="<?=$d->nama_barang?>">
                     </div>
                   </div>
                   <div class="form-row">
-                    <div class="form-group col-md-3">
-                      <label for="jumlah" style="margin-left:25px">Jumlah</label>
-                      <input type="number" name="jumlah" style="margin-left:25px" class="form-control" id="jumlah"
+                    <div class="form-group col-md-6">
+                      <label for="jumlah">Jumlah</label>
+                      <input type="number" name="jumlah" class="form-control" id="jumlah"
                         value="<?=$d->jumlah?>">
                     </div>
-                    <div class="form-group col-md-3">
-                      <label for="satuan" style="margin-left:25px">Satuan</label>
-                      <select name="satuan" class="form-control" style="margin-left:25px">
+                    <div class="form-group col-md-6">
+                      <label for="satuan">Satuan</label>
+                      <select name="satuan" class="form-control">
                         <?php foreach($list_satuan as $s){?>
                         <?php if($d->satuan == $s->nama_satuan){?>
                         <option value="<?=$d->satuan?>" selected=""><?=$d->satuan?></option>
