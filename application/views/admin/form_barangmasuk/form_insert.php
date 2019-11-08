@@ -106,7 +106,7 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <button type="reset" name="btn_reset" class="btn btn-secondary" style="margin-left:25px"><i
+                    <button type="reset" name="btn_reset" class="btn btn-secondary"><i
                         class="fa fa-eraser" aria-hidden="true"></i> Reset</button>
                   </div>
                   <!-- /.card-body -->

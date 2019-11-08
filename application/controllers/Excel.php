@@ -56,7 +56,7 @@ class Excel extends CI_Controller {
     $excel->getActiveSheet()->getStyle('A1')->getFont()->setSize(12); // Set font size 12 untuk kolom A1
     $excel->getActiveSheet()->getStyle('A1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER); // Set text center untuk kolom A1
 
-		$sql_data_barmas = "SELECT * FROM tb_barang_Masuk ORDER BY tanggal ASC";
+		$sql_data_barmas = "SELECT * FROM tb_barang_masuk ORDER BY tanggal ASC";
 												
     // Buat header tabel nya pada baris ke 3
     $excel->setActiveSheetIndex(0)->setCellValue('A3', "Tanggal"); // Set kolom A3 dengan tulisan "TANGGAL"
